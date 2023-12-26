@@ -14,7 +14,7 @@ export function Sidebar({ children }) {
       >
         <div className="p-4 pb-10 mt-3 flex justify-between items-center">
           <img
-            src="http://www.ganthauscc.com/img/ganthaus-distribuidora-380.jpg"
+            src="src\assets\ganthaus-distribuidora-380.jpg"
             className={`overflow-hidden transition-all ${
               expanded ? "w-40" : "w-0"
             }`}
