@@ -1,6 +1,7 @@
 import { MoreVertical, ChevronFirst, ChevronLast, Users } from "lucide-react";
 import { useContext, createContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Logo from '../../assets/ganthaus-distribuidora-380.jpg'
 const SidebarContext = createContext();
 
 export function Sidebar({ children }) {
@@ -14,7 +15,7 @@ export function Sidebar({ children }) {
       >
         <div className="p-4 pb-10 mt-3 flex justify-between items-center">
           <img
-            src="src\assets\ganthaus-distribuidora-380.jpg"
+            src={Logo}
             className={`overflow-hidden transition-all ${
               expanded ? "w-40" : "w-0"
             }`}
