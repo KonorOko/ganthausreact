@@ -20,7 +20,7 @@ export function Navigation() {
                 name={"Caja Chica"}
                 links={[
                   "admin/cajachica/datapage/",
-                  "admin/cajachica/analisis",
+                  "admin/cajachica/analisis/",
                 ]}
               />
             </li>
@@ -29,8 +29,8 @@ export function Navigation() {
                 props={MenusVehiculos}
                 name={"Vehículos"}
                 links={[
-                  "admin/cajagrande/datapage/",
-                  "admin/cajagrande/analisis",
+                  "admin/vehiculos/datapage/",
+                  "admin/vehiculos/verificaciones/",
                 ]}
               />
             </li>

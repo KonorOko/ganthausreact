@@ -17,6 +17,7 @@ export function SimpleTable({
   download,
   buttonsPagination,
   editable,
+  link
 }) {
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
@@ -79,7 +80,7 @@ export function SimpleTable({
           {table.getRowModel().rows.map((row, i) => (
             <tr
               onClick={() => {
-                editable ? navigate(`/admin/cajachica/${row.original.id}`) : null;
+                editable ? navigate(`${link}${row.original.id}`) : null;
               }}
               key={row.id}
               className={`border-blue-400

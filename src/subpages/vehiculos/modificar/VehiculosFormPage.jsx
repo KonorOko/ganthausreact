@@ -1,15 +1,15 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
-  createMovement,
-  deleteMovement,
-  updateMovement,
-  getMovement,
-} from "../api/admin.api";
+  createVehiculo,
+  deleteVehiculo,
+  updateVehiculo,
+  getVehiculo,
+} from "../../../api/admin.api";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
-export function MovFormPage({ setActualizar, actualizar }) {
+export function VehiculosFormPage({ setActualizar, actualizar, link}) {
   const {
     register,
     handleSubmit,
@@ -24,15 +24,24 @@ export function MovFormPage({ setActualizar, actualizar }) {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       try {
-        await updateMovement(params.id, data);
+        await updateVehiculo(params.id, data);
         toastUpdateSuccess();
-        navigate("/admin/cajachica/datapage");
+        navigate(link);
       } catch (error) {
         console.log("Ha sucedido un error:", error);
       }
     } else {
       try {
-        await createMovement(data);
+        if (data.modelo === "") {
+          delete data.modelo;
+        }
+        if (data.año === "") {
+          delete data.año;
+        }
+        if (data.placa === "") {
+          delete data.placa;
+        }
+        await createVehiculo(data);
         setActualizar(!actualizar);
         toastCreateSuccess();
       } catch (error) {
@@ -42,60 +51,61 @@ export function MovFormPage({ setActualizar, actualizar }) {
   });
 
   useEffect(() => {
-    async function loadMovement() {
+    async function loadVehiculo() {
       if (params.id) {
-        const res = await getMovement(params.id);
-        setValue("cantidad", res.data.cantidad);
-        setValue("motivo", res.data.motivo);
-        setValue("fecha", res.data.fecha);
+        const res = await getVehiculo(params.id);
+        setValue("id", res.data.id);
+        setValue("modelo", res.data.modelo);
+        setValue("año", res.data.año);
+        setValue("placa", res.data.placa);
       }
     }
-    loadMovement();
+    loadVehiculo();
   }, []);
 
-  const obtenerFechaActual = () => {
-    var now = new Date();
-    var day = ("0" + now.getDate()).slice(-2);
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-    var today = now.getFullYear() + "-" + month + "-" + day;
-    return today;
-  };
 
   return (
     <div className="justify-center w-full">
       <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1">
         <div className="w-full">
-          <label className="font-bold">Cantidad de la transacción</label>
-          <input
-            className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            type="number"
-            autoComplete="off"
-            autoFocus={true}
-            step={0.01}
-            placeholder="Cantidad"
-            {...register("cantidad", { required: true })}
-          />
-          {errors.cantidad && <span className="text-red-700">Este campo es requerido</span>}
-        </div>
-        <div>
-          <label className="font-bold">Motivo</label>
+          <label className="font-bold">Número</label>
           <input
             className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             type="text"
-            placeholder="Motivo"
-            {...register("motivo", { required: true })}
+            autoComplete="off"
+            autoFocus={true}
+            step={0.01}
+            placeholder="Número del vehículo"
+            {...register("id", { required: true })}
           />
-          {errors.motivo && <span className="text-red-700">Este campo es requerido</span>}
+          {errors.id && <span className="text-red-700">Este campo es requerido</span>}
         </div>
         <div>
-          <label className="font-bold">Fecha</label>
+          <label className="font-bold">Modelo</label>
           <input
             className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            type="date"
-            defaultValue={obtenerFechaActual()}
-            {...register("fecha", { required: true })}
+            type="text"
+            placeholder="Modelo del vehículo"
+            {...register("modelo")}
           />
-          {errors.fecha && <span className="text-red-700">Este campo es requerido</span>}
+        </div>
+        <div>
+          <label className="font-bold">Año</label>
+          <input
+            className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Año del vehículo"
+            type='number'
+            {...register("año")}
+          />
+        </div>
+        <div>
+          <label className="font-bold">Placa</label>
+          <input
+            className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Placa del vehículo"
+            type='text'
+            {...register("placa")}
+          />
         </div>
         <div>
           <button className="py-2.5 px-5 me-2 mb-2 text-base text-gray-900 focus:outline-none bg-blue-300 rounded-lg border border-gray-200 focus:z-10 focus:ring-2 focus:ring-black font-bold w-full hover:bg-blue-200">
@@ -112,9 +122,9 @@ export function MovFormPage({ setActualizar, actualizar }) {
                 "Estas seguro de eliminar este registro?"
               );
               if (accepted) {
-                await deleteMovement(params.id);
+                await deleteVehiculo(params.id);
                 toastDeleteSuccess();
-                navigate("/admin/cajachica/datapage");
+                navigate(link);
               }
             }}
           >

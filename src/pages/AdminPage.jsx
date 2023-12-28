@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
 import { Metrics } from "../components/ui/Metrics";
-import { getBalanceTotal, getUltimosMovimientos } from "../api/taks.api";
+import {
+  getBalanceTotal,
+  getUltimosMovimientos,
+  getFirstVerificaciones,
+} from "../api/admin.api";
 import { SimpleTable } from "../components/SimpleTable";
 import { Tabs } from "../components/ui/Tabs";
 import { Navigation } from "../components/Navigation";
 
 export function MainPage() {
-  const [ultimosMovimientos, setUltimosMovimientos] = useState([]);
+  const [ultimosMovimientos, setUltimosMovimientos] = useState([
+    { id: 0, cantidad: 0, motivo: "Cargando...", fecha: "Cargando..." },
+  ]);
   const [movimientos, setMovimientos] = useState([
     { cantidad: 0, movimientos: 0 },
   ]);
@@ -25,8 +31,30 @@ export function MainPage() {
     loadMovimientos();
   }, []);
   const [tab, setTab] = useState("Caja Chica");
+  const [firstVerificaciones, setFirstVerificaciones] = useState([
+    { id: 0, nombre: "Cargando...", apellido: "Cargando..." },
+  ]);
 
-  const columns = [
+  useEffect(() => {
+    async function loadFirstVerificaciones() {
+      const res = await getFirstVerificaciones();
+      setFirstVerificaciones(res.data);
+    }
+    loadFirstVerificaciones();
+  }, []);
+  
+  const columnsFirstVerificaciones = [
+    {
+      header: "Vehículo",
+      accessorKey: "vehiculo",
+    },
+    {
+      header: "Fecha",
+      accessorKey: "fecha",
+    },
+  ];
+
+  const columnsCajaChica = [
     {
       header: "ID",
       accessorKey: "id",
@@ -44,7 +72,7 @@ export function MainPage() {
       accessorKey: "fecha",
     },
   ];
-  function cajaChica() {
+  function cajaChicaTab() {
     return (
       <div className="py-2">
         <h2 className="text-center font-bold text-2xl">Caja Chica</h2>
@@ -57,8 +85,26 @@ export function MainPage() {
             Últimos movimientos
           </div>
           <div className="border rounded-md shadow-md m-3">
-            <SimpleTable data={ultimosMovimientos} columns={columns} />
+            <SimpleTable data={ultimosMovimientos} columns={columnsCajaChica} />
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  function vehiculosTab() {
+    return (
+      <div className="py-2">
+        <h2 className="text-center font-bold text-2xl">Vehículos</h2>
+        <div className="flex flex-row justify-evenly">Work in progress...</div>
+        <div>
+        <div className="text-center font-medium pb-0 mb-0 mt-2">
+            Verificaciones próximas
+          </div>
+
+        <div>
+          <SimpleTable data={firstVerificaciones} columns={columnsFirstVerificaciones} />
+        </div>
         </div>
       </div>
     );
@@ -67,14 +113,14 @@ export function MainPage() {
   function currentTab() {
     switch (tab) {
       case "Caja Chica":
-        return cajaChica();
-      case "vehículos":
-        return <div>Vehículos</div>;
+        return cajaChicaTab();
+      case "Vehículos":
+        return vehiculosTab();
       default:
         return <div>...</div>;
     }
   }
-  let names = ["Caja Chica", "Vehículos", "3"];
+  let names = ["Caja Chica", "Vehículos"];
 
   return (
     <div className="md:ml-16 ">

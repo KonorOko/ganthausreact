@@ -1,16 +1,20 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
-import { SidebarMain } from "./pages/SidebarMain";
-import { DataPage } from "./subpages/cajachica/modificar/DataPage";
-import { MainPage } from "./pages/AdminPage";
-import { EditMovement } from "./subpages/cajachica/modificar/EditMovement";
-import { Analisis } from "./subpages/cajachica/analisis/Analisis";
 import { Toaster } from "react-hot-toast";
 import { Login } from "./App";
+import { SidebarMain } from "./pages/SidebarMain";
+import { MainPage } from "./pages/AdminPage";
+import { EditMovement } from "./subpages/cajachica/modificar/EditMovement";
+import { DataPage } from "./subpages/cajachica/modificar/DataPage";
+import { Analisis } from "./subpages/cajachica/analisis/Analisis";
+import { DataPageVehiculos } from "./subpages/vehiculos/modificar/DataPageVehiculos";
+import { DataVerificacionesPage } from "./subpages/vehiculos/verificacion/DataVerificacionesPage";
+import { EditVehiculos } from "./subpages/vehiculos/modificar/EditVehiculos";
+import { EditVerificaciones } from "./subpages/vehiculos/verificacion/EditVerificaciones";
 import Settings, { Logout } from "./pages/Settings";
-import Main from './pages/Main'
+import Main from "./pages/Main";
 import "./interceptor/axios";
 
 const router = createBrowserRouter([
@@ -37,6 +41,22 @@ const router = createBrowserRouter([
       {
         path: "admin/cajachica/analisis",
         element: <Analisis />,
+      },
+      {
+        path: "admin/vehiculos/datapage/",
+        element: <DataPageVehiculos />,
+      },
+      {
+        path: "admin/vehiculos/verificaciones",
+        element: <DataVerificacionesPage />,
+      },
+      {
+        path: "admin/vehiculos/:id",
+        element: <EditVehiculos />,
+      },
+      {
+        path: "admin/vehiculos/verificaciones/:id",
+        element: <EditVerificaciones />,
       },
     ],
   },

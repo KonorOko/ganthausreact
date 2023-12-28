@@ -20,7 +20,6 @@ export function SidebarMain() {
       if (localStorage.getItem("access_token") === null) {
         window.location.href = '/login';
       } else if (localStorage.getItem('access_token') !== null) {
-        console.log(localStorage.getItem('access_token'));
         setIsAuth(true); 
       }
     }, [isAuth]);

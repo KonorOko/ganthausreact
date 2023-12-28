@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
-  createMovement,
-  deleteMovement,
-  updateMovement,
-  getMovement,
-} from "../api/admin.api";
+  createVerificacion,
+  deleteVerificacion,
+  getVerificacion,
+  getAllVehiculos,
+  updateVerificacion,
+} from "../../../api/admin.api";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
-export function MovFormPage({ setActualizar, actualizar }) {
+export function VerificacionesFormPage({ setActualizar, actualizar, link }) {
+  const [vehiculos, setVehiculos] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -24,15 +27,15 @@ export function MovFormPage({ setActualizar, actualizar }) {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       try {
-        await updateMovement(params.id, data);
+        await updateVerificacion(params.id, data);
         toastUpdateSuccess();
-        navigate("/admin/cajachica/datapage");
+        navigate(link);
       } catch (error) {
         console.log("Ha sucedido un error:", error);
       }
     } else {
       try {
-        await createMovement(data);
+        await createVerificacion(data);
         setActualizar(!actualizar);
         toastCreateSuccess();
       } catch (error) {
@@ -42,57 +45,53 @@ export function MovFormPage({ setActualizar, actualizar }) {
   });
 
   useEffect(() => {
-    async function loadMovement() {
+    async function loadVerificacion() {
       if (params.id) {
-        const res = await getMovement(params.id);
-        setValue("cantidad", res.data.cantidad);
-        setValue("motivo", res.data.motivo);
+        const res = await getVerificacion(params.id);
+        setValue("vehiculo", res.data.vehiculo);
         setValue("fecha", res.data.fecha);
       }
     }
-    loadMovement();
+    loadVerificacion();
   }, []);
 
-  const obtenerFechaActual = () => {
-    var now = new Date();
-    var day = ("0" + now.getDate()).slice(-2);
-    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-    var today = now.getFullYear() + "-" + month + "-" + day;
-    return today;
-  };
+  useEffect(() => {
+    async function loadVehiculos() {
+      const res = await getAllVehiculos();
+      setVehiculos(res.data);
+    }
+    loadVehiculos();
+  }, []);
 
   return (
     <div className="justify-center w-full">
       <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1">
         <div className="w-full">
-          <label className="font-bold">Cantidad de la transacción</label>
-          <input
+          <label className="font-bold">Vehículo</label>
+          <select
             className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            type="number"
             autoComplete="off"
-            autoFocus={true}
-            step={0.01}
-            placeholder="Cantidad"
-            {...register("cantidad", { required: true })}
-          />
-          {errors.cantidad && <span className="text-red-700">Este campo es requerido</span>}
+            defaultValue={"DEFAULT"}
+            placeholder="Vehículo"
+            {...register("vehiculo", { required: true })}
+          >
+            <option value="DEFAULT" disabled>
+              Selecciona un vehículo [id, placa]
+            </option>
+            {errors.vehiculo && <span className="text-red-700">Este campo es requerido</span>}
+            {vehiculos.map((vehiculo) => (
+              <option value={vehiculo.id} key={vehiculo.id}>
+                {vehiculo.id} - {vehiculo.placa}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
-          <label className="font-bold">Motivo</label>
-          <input
-            className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            type="text"
-            placeholder="Motivo"
-            {...register("motivo", { required: true })}
-          />
-          {errors.motivo && <span className="text-red-700">Este campo es requerido</span>}
-        </div>
-        <div>
-          <label className="font-bold">Fecha</label>
+          <label className="font-bold">Verificación</label>
           <input
             className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             type="date"
-            defaultValue={obtenerFechaActual()}
+            placeholder="Fecha de verificación"
             {...register("fecha", { required: true })}
           />
           {errors.fecha && <span className="text-red-700">Este campo es requerido</span>}
@@ -112,9 +111,9 @@ export function MovFormPage({ setActualizar, actualizar }) {
                 "Estas seguro de eliminar este registro?"
               );
               if (accepted) {
-                await deleteMovement(params.id);
+                await deleteVerificacion(params.id);
                 toastDeleteSuccess();
-                navigate("/admin/cajachica/datapage");
+                navigate(link);
               }
             }}
           >

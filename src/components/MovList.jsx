@@ -1,6 +1,6 @@
 import { SimpleTable } from "./SimpleTable";
 import { useEffect, useState } from "react";
-import { getAllMovimientos } from "../api/taks.api";
+import { getAllMovimientos } from "../api/admin.api";
 
 export function MovList({ actualizar }) {
   const [movimientos, setMovimientos] = useState([]);
@@ -44,6 +44,7 @@ export function MovList({ actualizar }) {
         download={true}
         buttonsPagination={true}
         editable={true}
+        link={"/admin/cajachica/"}
       />
     </div>
   );

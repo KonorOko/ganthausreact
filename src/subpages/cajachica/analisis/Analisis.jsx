@@ -5,7 +5,7 @@ import {
   getAnalisis,
   getTransacciones,
   getApoyos,
-} from "../../../api/taks.api";
+} from "../../../api/admin.api";
 import { ChartLine } from "../../../components/ChartLine";
 import { ChartBar } from "../../../components/ChartBar";
 import { ChartPie } from "../../../components/ChartPie";
@@ -37,7 +37,6 @@ export function Analisis() {
     async function loadTransaccion() {
       const resTransacciones = await getTransacciones();
       setTransacciones(resTransacciones.data);
-      console.log(resTransacciones.data);
     }
     loadTransaccion();
   }, []);
@@ -65,7 +64,7 @@ export function Analisis() {
     loadDatos();
   }, []);
   const [tab, setTab] = useState("Gasolina");
-  let names = ["Gasolina", "Transacciones", "Apoyos", "Otros"];
+  let names = ["Gasolina", "Transacciones", "Apoyos"];
 
   function gasolinaTab() {
     return (
