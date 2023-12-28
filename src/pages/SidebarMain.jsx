@@ -53,7 +53,7 @@ export function SidebarMain() {
           text={"Descuentos"}
           link={"/descuentos"}
         />
-        <hr className="my-3" />
+        <hr className="my-3 hidden md:visible" />
         <SidebarItem
           icon={<Settings size={30} />}
           text={"Ajustes"}

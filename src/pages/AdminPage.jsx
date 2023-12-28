@@ -102,7 +102,7 @@ export function MainPage() {
             Verificaciones próximas
           </div>
 
-        <div>
+        <div className="border rounded-md shadow-md m-3">
           <SimpleTable data={firstVerificaciones} columns={columnsFirstVerificaciones} />
         </div>
         </div>
@@ -123,9 +123,9 @@ export function MainPage() {
   let names = ["Caja Chica", "Vehículos"];
 
   return (
-    <div className="md:ml-16 ">
+    <div className="sm:ml-16">
       <Navigation />
-      <div className="my-2 mx-10 px-5 py-2 rounded-md min-h-screen">
+      <div className="my-2 sm:mx-10 sm:px-5 py-2 rounded-md min-h-screen">
         <div className="rounded-md bg-white shadow-md mb-2 p-1">
           <h1 className="p-2 w-10/12 font-bold text-3xl">Overview</h1>
         </div>

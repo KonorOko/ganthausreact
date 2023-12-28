@@ -40,13 +40,13 @@ export function SimpleTable({
   return (
     <div className="p-2 mx-auto mt-2 rounded-md">
       {download && (
-        <button className="mx-1 rounded-md p-0 ps-0 float-left border text-base my-0 w-52 hover:bg-blue-50 mt-1 h-7">
+        <button className="sm:mx-1 rounded-md p-0 ps-0 float-left border text-base my-0 w-full sm:w-52 hover:bg-blue-50 mt-1 h-7">
           Descargar
         </button>
       )}
       {search && (
         <input
-          className="p-0 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-5 focus:border-blue-200 float-right m-1 hover:bg-blue-50"
+          className="p-0 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-full sm:w-80 bg-gray-5 focus:border-blue-200 float-right my-1 sm:mx-1 hover:bg-blue-50"
           type="text"
           placeholder="Buscar"
           value={filtering}

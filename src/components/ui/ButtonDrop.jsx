@@ -15,7 +15,7 @@ export function ButtonDrop({ props, name, links }) {
   return (
     <div className="relative mx-0 z-50">
       <button
-        className="hover:text-blue-50 border-blue-800 bg-blue-300 rounded-lg px-6 shadow-lg"
+        className="hover:text-blue-50 border-blue-800 bg-blue-300 rounded-lg px-2 sm:px-6 shadow-lg"
         ref={buttonRef}
         onClick={() => setOpen(!open)}
       >
