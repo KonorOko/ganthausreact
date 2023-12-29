@@ -1,7 +1,7 @@
 import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { Login } from "./App";
 import { SidebarMain } from "./pages/SidebarMain";
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Main />,
+        element: <Navigate to="admin/" />,
       },
       {
         path: "admin/",
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <div>Not found</div>,
+    element: <Navigate to="/admin" />,
   },
   {
     path: "/login",
