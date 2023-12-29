@@ -70,7 +70,7 @@ export function Analisis() {
     return (
       <div>
         <h2 className="text-lg text-center font-bold">Gasolina</h2>
-        <p className="m-4">
+        <p className="sm:m-4 text-justify">
           Los cálculos y análisis serán realizados con base en los registros del
           mes actual.
         </p>
@@ -84,7 +84,7 @@ export function Analisis() {
     return (
       <div>
         <h2 className="text-lg text-center font-bold">Transacciones</h2>
-        <p className="m-4">
+        <p className="sm:m-4 text-justify">
           Los cálculos y análisis serán realizados con base en los registros del
           mes actual.
           <br />
@@ -102,7 +102,7 @@ export function Analisis() {
     return (
       <div>
         <h2 className="text-lg text-center font-bold">Apoyos</h2>
-        <p className="m-4">
+        <p className="sm:m-4 text-justify">
           Los cálculos y análisis serán realizados con base en los registros del
           mes actual.
         </p>
