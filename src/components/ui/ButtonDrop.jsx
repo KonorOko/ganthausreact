@@ -24,13 +24,13 @@ export function ButtonDrop({ props, name, links }) {
       {open && (
         <div
           ref={menuRef}
-          className="bg-white p-4 w-52 shadow-lg absolute -left-14 top-10 -z-50"
+          className="bg-white p-2 sm:p-4 w-32 sm:w-52 shadow-lg absolute -left-14 top-10 -z-50"
         >
           <ul className="-z-50">
             {Menus.map((menu, index) => (
               <Link to={`/${links[index]}`} id={index} key={index}>
                 <li
-                  className="p-2 text-lg cursor-pointer rounded hover:bg-blue-50 -z-50 bg-white"
+                  className="p-1 sm:p-2 text-base sm:text-lg cursor-pointer rounded hover:bg-blue-50 -z-50 bg-white"
                   key={index}
                 >
                   {menu}
