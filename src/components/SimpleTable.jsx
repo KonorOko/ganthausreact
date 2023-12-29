@@ -53,7 +53,7 @@ export function SimpleTable({
           onChange={(e) => setFiltering(e.target.value)}
         />
       )}
-      <table className="w-full text-base text-left rtl:text-right text-gray-500 border border-collapse sm:table-fixed table-auto">
+      <table className="w-full text-sm sm:text-base text-left rtl:text-right text-gray-500 border border-collapse sm:table-fixed table-auto">
         <thead className="text-gray-900 uppercase bg-blue-200 font-medium">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -104,19 +104,19 @@ export function SimpleTable({
       {buttonsPagination && (
         <div className="inline-flex rounded-md shadow-sm" role="group">
           <button
-            className="sm:px-4 sm:py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-sm hover:bg-blue-50"
+            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-s-sm hover:bg-blue-50"
             onClick={() => table.setPageIndex(0)}
           >
             Primer Página
           </button>
           <button
-            className="sm:px-4 sm:py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200  hover:bg-blue-50"
+            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200  hover:bg-blue-50"
             onClick={() => table.previousPage()}
           >
             Página Anterior
           </button>
           <button
-            className="sm:px-4 sm:py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 hover:bg-blue-50"
+            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 hover:bg-blue-50"
             onClick={() => {
               table.getCanNextPage() === true ? table.nextPage() : null;
             }}
@@ -124,7 +124,7 @@ export function SimpleTable({
             Página Siguiente
           </button>
           <button
-            className="sm:px-4 sm:py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-sm hover:bg-blue-50"
+            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-e-sm hover:bg-blue-50"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           >
             Última Página
