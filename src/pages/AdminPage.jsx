@@ -75,7 +75,7 @@ export function MainPage() {
   function cajaChicaTab() {
     return (
       <div className="py-2">
-        <h2 className="text-center font-bold text-2xl">Caja Chica</h2>
+        <h2 className="text-center font-bold text-2xl mt-1 mb-2">Caja Chica</h2>
         <div className="flex flex-row justify-evenly">
           <Metrics valor={movimientos[0].cantidad} name="Balance Total" />
           <Metrics valor={movimientos[0].movimientos} name="Movimientos" />
@@ -95,7 +95,7 @@ export function MainPage() {
   function vehiculosTab() {
     return (
       <div className="py-2">
-        <h2 className="text-center font-bold text-2xl">Vehículos</h2>
+        <h2 className="text-center font-bold text-2xl mt-1 mb-2">Vehículos</h2>
         <div className="flex flex-row justify-evenly">Work in progress...</div>
         <div>
         <div className="text-center font-medium pb-0 mb-0 mt-2">

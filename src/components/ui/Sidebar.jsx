@@ -7,9 +7,9 @@ const SidebarContext = createContext();
 export function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <aside className="fixed sm:top-0 left-0 z-40 sm:transition-transform sm:translate-x-0 sm:h-full bottom-0 w-full">
+    <aside className="fixed sm:top-0 left-0 z-40 transition-transform translate-x-0 sm:h-full bottom-0 w-full">
       <nav
-        className={`sm:h-full sm:flex sm:flex-col bg-white border-r shadow-sm transition-all grid ${
+        className={`sm:h-full sm:flex sm:flex-col bg-white border-r shadow-sm transition-all grid h-16 ${
           expanded ? "sm:w-64" : "sm:w-18"
         }`}
       >
