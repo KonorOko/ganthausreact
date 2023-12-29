@@ -134,11 +134,11 @@ export function Analisis() {
             Análisis de movimientos
           </h1>
         </div>
-        <div className="bg-white border rounded-md shadow-md px-2 py-3 mb-3">
+        <div className="bg-white border rounded-md shadow-md sm:px-2 py-3 mb-3">
           <h2 className="text-lg text-center font-bold">
             Balance Total vs Tiempo
           </h2>
-          <div className="px-5">
+          <div className="sm:px-5">
             <ChartLine data={balanceTotal} height={300} />
           </div>
         </div>
