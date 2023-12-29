@@ -53,7 +53,7 @@ export function SimpleTable({
           onChange={(e) => setFiltering(e.target.value)}
         />
       )}
-      <table className="w-full text-sm sm:text-base text-left rtl:text-right text-gray-500 border border-collapse sm:table-fixed table-auto">
+      <table className="w-full text-xs sm:text-base text-left rtl:text-right text-gray-500 border border-collapse sm:table-fixed table-auto">
         <thead className="text-gray-900 uppercase bg-blue-200 font-medium">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
