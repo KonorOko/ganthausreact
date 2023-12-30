@@ -123,14 +123,14 @@ export function MainPage() {
   let names = ["Caja Chica", "Vehículos"];
 
   return (
-    <div className="sm:ml-16">
+    <div className="md:ml-16">
       <Navigation />
-      <div className="my-2 sm:mx-10 sm:px-5 py-2 rounded-md min-h-screen">
+      <div className="my-2 md:mx-10 md:px-5 py-2 rounded-md min-h-screen">
         <div className="rounded-md bg-white shadow-md mb-2 p-1">
           <h1 className="p-2 w-10/12 font-bold text-3xl">Overview</h1>
         </div>
         <div className="bg-white mt-5 rounded-md border shadow-md">
-          <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 bg-white">
+          <div className="text-md font-medium text-center text-gray-500 border-b border-gray-200 bg-white">
             <Tabs names={names} tab={tab} setTab={setTab} />
           </div>
           {currentTab()}

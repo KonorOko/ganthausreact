@@ -68,10 +68,10 @@ export function MovFormPage({ setActualizar, actualizar }) {
           <label className="font-bold">Cantidad de la transacción</label>
           <input
             className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            type="number"
+            inputMode="numeric"
+            pattern="-?\d+(\.\d{1,2})?"
             autoComplete="off"
             autoFocus={true}
-            step={0.01}
             placeholder="Cantidad"
             {...register("cantidad", { required: true })}
           />

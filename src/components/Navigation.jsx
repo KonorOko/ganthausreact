@@ -4,17 +4,17 @@ export function Navigation() {
   const Menus = ["Modificar", "Análisis"];
   const MenusVehiculos = ["Modificar", "Verificaciones"];
   return (
-    <nav className="border-b font-medium border-blue-400 text-black text-lg shadow-md mb-2 sm:px-1 bg-blue-400 sticky top-0 z-20">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+    <nav className="border-b font-medium border-blue-400 text-black text-lg shadow-md mb-2 md:px-1 bg-blue-400 sticky top-0 z-20">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 md:mrl-0">
         <Link
-          className="font-bold hover:text-blue-50 text-base rounded-md bg-blue-300 sm:px-8 px-2"
+          className="shadow-lg ml-4 md:ml-0 hover:text-blue-50 text-base md:text-lg rounded-lg bg-blue-300 md:px-8 px-4 mt-auto"
           to="/admin"
         >
           Inicio
         </Link>
-        <div>
+        <div className="mr-4 md:mr-0">
           <ul className="flex flex-row ">
-            <li className="sm:mx-2">
+            <li className="md:mx-2">
               <ButtonDrop
                 props={Menus}
                 name={"Caja Chica"}
@@ -24,7 +24,7 @@ export function Navigation() {
                 ]}
               />
             </li>
-            <li className="sm:mx-2 mx-1">
+            <li className="md:mx-2 mx-1">
               <ButtonDrop
                 props={MenusVehiculos}
                 name={"Vehículos"}

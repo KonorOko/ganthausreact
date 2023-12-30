@@ -15,7 +15,7 @@ export function ButtonDrop({ props, name, links }) {
   return (
     <div className="relative mx-0 z-50">
       <button
-        className="hover:text-blue-50 border-blue-800 bg-blue-300 rounded-lg px-2 sm:px-6 shadow-lg text-base sm:text-lg"
+        className="hover:text-blue-50 border-blue-800 bg-blue-300 rounded-lg px-2 md:px-6 shadow-lg text-base md:text-lg mt-auto"
         ref={buttonRef}
         onClick={() => setOpen(!open)}
       >
@@ -24,13 +24,13 @@ export function ButtonDrop({ props, name, links }) {
       {open && (
         <div
           ref={menuRef}
-          className="bg-white p-2 sm:p-4 w-32 sm:w-52 shadow-lg absolute sm:-left-14 -left-9 top-10 -z-50"
+          className="overflow-hidden rounded-md bg-white p-1 md:p-1 w-32 md:w-40 shadow-lg absolute top-10 -z-50 -translate-x-1/2 left-1/2"
         >
           <ul className="-z-50">
             {Menus.map((menu, index) => (
               <Link to={`/${links[index]}`} id={index} key={index}>
                 <li
-                  className="p-1 sm:p-2 text-base sm:text-lg cursor-pointer rounded hover:bg-blue-50 -z-50 bg-white"
+                  className="p-1 md:p-2 text-base text-left cursor-pointer rounded hover:bg-blue-50 -z-50 bg-white"
                   key={index}
                 >
                   {menu}

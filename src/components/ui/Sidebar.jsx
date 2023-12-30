@@ -7,17 +7,17 @@ const SidebarContext = createContext();
 export function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <aside className="fixed sm:top-0 left-0 z-40 transition-transform translate-x-0 sm:h-full bottom-0 w-full sm:w-auto">
+    <aside className="fixed md:top-0 left-0 z-40 transition-transform translate-x-0 md:h-full bottom-0 w-full md:w-auto">
       <nav
-        className={`sm:h-full sm:flex sm:flex-col bg-white border-r shadow-sm transition-all grid h-16 ${
-          expanded ? "sm:w-64" : "sm:w-18"
+        className={`md:h-full md:flex md:flex-col bg-white border-r shadow-md transition-all grid h-16 ${
+          expanded ? "md:w-64" : "md:w-18"
         }`}
       >
-        <div className="p-4 pb-10 mt-3 sm:flex justify-between items-center hidden sm:visible">
+        <div className="p-4 pb-10 mt-3 md:flex justify-between items-center hidden md:visible">
           <img
             src={Logo}
             className={`overflow-hidden transition-all ${
-              expanded ? "sm:w-40" : "sm:w-0"
+              expanded ? "md:w-40" : "md:w-0"
             }`}
             alt=""
           />
@@ -30,7 +30,7 @@ export function Sidebar({ children }) {
         </div>
 
         <SidebarContext.Provider value={{ expanded }}>
-          <ul className="sm:flex-1 px-3 sm:flex sm:flex-col grid grid-cols-7">{children}</ul>
+          <ul className="md:flex-1 px-3 md:flex md:flex-col grid grid-cols-7">{children}</ul>
         </SidebarContext.Provider>
 
       </nav>
@@ -45,11 +45,11 @@ export function SidebarItem({ icon, text, alert, link }) {
       to={link}
       className={`relative flex items-center py-2 px-3 my-1
     font-medium rounded-md cursor-pointer
-    transition-colors group hover:bg-blue-50 text-gray-600`}
+    transition-colors group hover:bg-blue-50 text-gray-600 justify-center`}
     >
       {icon}
       <span
-        className={`sm:overflow-hidden sm:transition-all hidden sm:flex ${
+        className={`md:overflow-hidden md:transition-all hidden md:flex ${
           expanded ? "w-52 ml-3" : "w-0"
         }`}
       >
@@ -64,7 +64,7 @@ export function SidebarItem({ icon, text, alert, link }) {
       )}
       {!expanded && (
         <div
-          className={`absolute left-full rounded-md px-2 py-1 ml-6 bg-indigo-100 text-blue-800 text-sm invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 hidden sm:visible`}
+          className={`absolute left-full rounded-md px-2 py-1 ml-6 bg-indigo-100 text-blue-800 text-md invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0 hidden md:visible`}
         >
           {text}
         </div>

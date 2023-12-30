@@ -70,7 +70,7 @@ export function Analisis() {
     return (
       <div>
         <h2 className="text-lg text-center font-bold">Gasolina</h2>
-        <p className="sm:m-4 text-justify">
+        <p className="md:m-4 text-justify">
           Los cálculos y análisis serán realizados con base en los registros del
           mes actual.
         </p>
@@ -84,7 +84,7 @@ export function Analisis() {
     return (
       <div>
         <h2 className="text-lg text-center font-bold">Transacciones</h2>
-        <p className="sm:m-4 text-justify">
+        <p className="md:m-4 text-justify">
           Los cálculos y análisis serán realizados con base en los registros del
           mes actual.
           <br />
@@ -102,7 +102,7 @@ export function Analisis() {
     return (
       <div>
         <h2 className="text-lg text-center font-bold">Apoyos</h2>
-        <p className="sm:m-4 text-justify">
+        <p className="md:m-4 text-justify">
           Los cálculos y análisis serán realizados con base en los registros del
           mes actual.
         </p>
@@ -126,27 +126,27 @@ export function Analisis() {
   }
 
   return (
-    <div className="sm:ml-16">
+    <div className="md:ml-16">
       <Navigation />
-      <div className="my-2 sm:mx-10 px-5 py-2 rounded-md min-h-screen">
+      <div className="my-2 md:mx-10 md:px-5 py-2 rounded-md min-h-screen bg-slate-50">
         <div className="rounded-md bg-white shadow-md mb-2 p-1">
           <h1 className="p-2 w-10/12 font-bold text-3xl">
             Análisis de movimientos
           </h1>
         </div>
-        <div className="bg-white border rounded-md shadow-md sm:px-2 py-3 mb-3">
+        <div className="bg-white border rounded-md shadow-md md:px-2 py-3 mb-3">
           <h2 className="text-lg text-center font-bold">
             Balance Total vs Tiempo
           </h2>
-          <div className="sm:px-5">
+          <div className="md:px-5">
             <ChartLine data={balanceTotal} height={300} />
           </div>
         </div>
-        <div className="sm:w-2/3 border rounded-md sm:mx-auto mb-3 shadow-md bg-white p-3">
+        <div className="md:w-2/3 border rounded-md md:mx-auto mb-3 shadow-md bg-white p-3">
           <h2 className="text-center font-bold text-lg pt-3">
             Egresos del mes
           </h2>
-          <div className="sm:flex justify-evenly mb-3 mt-3 border-t pt-3">
+          <div className="md:flex justify-evenly mb-3 mt-3 border-t pt-3">
             <Metrics
               valor={`$ ${datos[0]["cantidad_total"]}`}
               name="Gasolina"

@@ -8,7 +8,7 @@ export function ChartPie({ data, height, dataKey, nameKey }) {
     const x  = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy  + radius * Math.sin(-midAngle * RADIAN);
     return (
-      <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" className="hidden md:flex">
         {name} - {`${(percent * 100).toFixed(0)}%`}
       </text>
     );
