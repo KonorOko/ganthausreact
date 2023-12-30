@@ -40,20 +40,20 @@ export function SimpleTable({
   return (
     <div className="p-2 mx-auto mt-2 rounded-md">
       {download && (
-        <button className="sm:mx-1 rounded-md p-0 ps-0 float-left border text-base my-0 w-full sm:w-52 hover:bg-blue-50 mt-1 h-7">
+        <button className="md:mx-1 rounded-md p-0 ps-0 float-left border text-base my-0 w-full md:w-52 hover:bg-blue-50 mt-1 h-7">
           Descargar
         </button>
       )}
       {search && (
         <input
-          className="p-0 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-full sm:w-80 bg-gray-5 focus:border-blue-200 float-right my-1 sm:mx-1 hover:bg-blue-50"
+          className="p-0 ps-10 text-lg text-gray-900 border border-gray-300 rounded-lg w-full md:w-80 bg-gray-5 focus:border-blue-200 float-right my-1 md:mx-1 hover:bg-blue-50"
           type="text"
           placeholder="Buscar"
           value={filtering}
           onChange={(e) => setFiltering(e.target.value)}
         />
       )}
-      <table className="w-full text-xs sm:text-base text-left rtl:text-right text-gray-500 border border-collapse sm:table-fixed table-auto">
+      <table className="w-full text-xs md:text-base text-left rtl:text-right text-gray-500 border border-collapse md:table-fixed table-auto">
         <thead className="text-gray-900 uppercase bg-blue-200 font-medium">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -104,19 +104,19 @@ export function SimpleTable({
       {buttonsPagination && (
         <div className="inline-flex rounded-md shadow-sm" role="group">
           <button
-            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-s-sm hover:bg-blue-50"
+            className="md:px-4 md:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-s-sm hover:bg-blue-50"
             onClick={() => table.setPageIndex(0)}
           >
             Primer Página
           </button>
           <button
-            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200  hover:bg-blue-50"
+            className="sm:px-4 md:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200  hover:bg-blue-50"
             onClick={() => table.previousPage()}
           >
             Página Anterior
           </button>
           <button
-            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 hover:bg-blue-50"
+            className="md:px-4 md:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 hover:bg-blue-50"
             onClick={() => {
               table.getCanNextPage() === true ? table.nextPage() : null;
             }}
@@ -124,7 +124,7 @@ export function SimpleTable({
             Página Siguiente
           </button>
           <button
-            className="sm:px-4 sm:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-e-sm hover:bg-blue-50"
+            className="md:px-4 md:py-1 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-e-sm hover:bg-blue-50"
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           >
             Última Página

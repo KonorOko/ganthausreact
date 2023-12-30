@@ -8,7 +8,7 @@ export function DataPageVehiculos() {
   return (
     <div className="md:ml-16">
       <Navigation />
-      <div className="my-2 md:mx-10 md:px-5 py-2 border rounded-md min-h-screen bg-slate-50">
+      <div className="my-2 md:px-5 py-2 min-h-screen bg-slate-50">
         <div className="rounded-md bg-white shadow-md mb-3 p-1">
           <h1 className="p-2 w-10/12 font-bold text-3xl">Vehículos</h1>
         </div>

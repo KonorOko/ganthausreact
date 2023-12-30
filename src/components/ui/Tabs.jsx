@@ -6,7 +6,7 @@ export function Tabs({ names, tab, setTab }) {
           <li className="me-2" key={key}>
             <div
               onClick={() => setTab(name)}
-              className={`inline-block p-2 sm:p-4 border-b-2 rounded-tl-lg cursor-pointer ${
+              className={`inline-block p-2 md:p-4 border-b-2 rounded-tl-lg cursor-pointer ${
                 tab === name
                   ? "text-blue-600 border-blue-600"
                   : "hover:text-gray-600 hover:border-gray-400 border-transparent"
