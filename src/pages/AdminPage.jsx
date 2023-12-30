@@ -11,7 +11,7 @@ import { Navigation } from "../components/Navigation";
 
 export function MainPage() {
   const [ultimosMovimientos, setUltimosMovimientos] = useState([
-    { id: 0, cantidad: 0, motivo: "Cargando...", fecha: "Cargando..." },
+    { id: "...", cantidad: "...", motivo: "...", fecha: "..." },
   ]);
   const [movimientos, setMovimientos] = useState([
     { cantidad: 0, movimientos: 0 },
@@ -32,7 +32,7 @@ export function MainPage() {
   }, []);
   const [tab, setTab] = useState("Caja Chica");
   const [firstVerificaciones, setFirstVerificaciones] = useState([
-    { id: 0, nombre: "Cargando...", apellido: "Cargando..." },
+    { id: "...", vehiculo: "...", fecha: "..." },
   ]);
 
   useEffect(() => {

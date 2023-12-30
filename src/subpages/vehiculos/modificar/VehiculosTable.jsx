@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { getAllVehiculos } from "../../../api/admin.api";
 
 export function VehiculosTable({ actualizar }) {
-  const [vehiculos, setVehiculos] = useState([]);
+  const [vehiculos, setVehiculos] = useState([{
+    id: "...",
+    modelo: "...",
+    año: "...",
+    placa: "...",
+  }]);
   useEffect(() => {
     async function loadVehiculos() {
       const res = await getAllVehiculos();

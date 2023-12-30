@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { getAllMovimientos } from "../api/admin.api";
 
 export function MovList({ actualizar }) {
-  const [movimientos, setMovimientos] = useState([]);
+  const [movimientos, setMovimientos] = useState([{
+    id: "...",
+    cantidad: "...",
+    motivo: "...",
+    fecha: "...",
+  }]);
   useEffect(() => {
     async function loadMovimientos() {
       const res = await getAllMovimientos();

@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { getAllVerificaciones } from "../../../api/admin.api";
 
 export function VerificacionesTable({ actualizar }) {
-  const [verificaciones, setVerificaciones] = useState([]);
+  const [verificaciones, setVerificaciones] = useState([{
+    id: "...",
+    vehiculo: "...",
+    fecha: "...",
+  }]);
   useEffect(() => {
     async function loadVerificaciones() {
       const res = await getAllVerificaciones();
