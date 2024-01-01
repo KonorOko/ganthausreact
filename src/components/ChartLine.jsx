@@ -13,7 +13,7 @@ import {
 export function ChartLine({ data, height }) {
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <LineChart data={data} margin={{ top: 5, right: 30, left: 0, bottom: 15 }}>
+      <LineChart data={data} margin={{ top: 5, right: 30, left: 10, bottom: 15 }}>
         <ReferenceLine y={0} stroke="red" strokeDasharray="5 5" />
         <Line
           type="monotone"
@@ -34,6 +34,7 @@ export function ChartLine({ data, height }) {
             value: "Pesos MXN",
             angle: -90,
             position: "insideLeft",
+            offset: -3,
           }}
         />
         <Tooltip />
