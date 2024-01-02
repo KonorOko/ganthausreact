@@ -54,7 +54,7 @@ export const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 md:py-8 mx-auto h-screen lg:py-0 bg-blue-50">
       <div className="fw-full bg-white rounded-lg shadow dark:border mt-0 md:max-w-md xl:p-0 w-96 md:h-72 h-screen">
-        <form className="md:space-y-6 mt-20 mx-1" onSubmit={submit}>
+        <form className="md:space-y-6 mt-2 mx-1" onSubmit={submit}>
           <div className="px-4">
             <h3 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl my-5">Login</h3>
             <div >
@@ -73,7 +73,7 @@ export const Login = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
-            <div className="">
+            <div className="mt-2">
               <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="password">
                 Contraseña
               </label>
@@ -88,10 +88,10 @@ export const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="d-grid gap-2 mt-3">
+            <div className="mt-3">
               <button
                 type="submit"
-                className="border rounded-md p-2 w-20 bg-blue-200"
+                className="border rounded-md p-2 w-24 bg-blue-200"
               >
                 Confirmar
               </button>
