@@ -5,9 +5,9 @@ import {
   deleteMovement,
   updateMovement,
   getMovement,
-} from "../api/admin.api";
+} from "../../../api/admin.api";
 import { useNavigate, useParams } from "react-router-dom";
-import { AwaitToast } from './ui/AwaitToast';
+import { AwaitToast } from '../../../components/ui/AwaitToast';
 
 export function MovFormPage({ setActualizar, actualizar }) {
   const {

@@ -1,5 +1,5 @@
-import { MovList } from "../../../components/MovList";
-import { MovFormPage } from "../../../components/MovFormPage";
+import { MovList } from "./MovList";
+import { MovFormPage } from "./MovFormPage";
 import { useState } from "react";
 import { Navigation } from "../../../components/Navigation";
 

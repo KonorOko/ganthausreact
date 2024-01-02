@@ -1,4 +1,4 @@
-import { MovFormPage } from "../../../components/MovFormPage";
+import { MovFormPage } from "./MovFormPage";
 import { Navigation } from "../../../components/Navigation";
 export function EditMovement() {
   return (

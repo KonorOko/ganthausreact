@@ -1,6 +1,6 @@
-import { SimpleTable } from "./SimpleTable";
+import { SimpleTable } from "../../../components/SimpleTable";
 import { useEffect, useState } from "react";
-import { getAllMovimientos } from "../api/admin.api";
+import { getAllMovimientos } from "../../../api/admin.api";
 
 export function MovList({ actualizar }) {
   const [movimientos, setMovimientos] = useState([{
