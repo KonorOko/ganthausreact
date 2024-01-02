@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { AwaitToastCustom } from './components/ui/AwaitToast';
 
 export const Login = () => {
-
   useEffect(() => {
     localStorage.clear();
     axios.defaults.headers.common["Authorization"] = null;
@@ -19,23 +19,34 @@ export const Login = () => {
       password: password,
     };
 
-    const { data } = await axios.post(
-      "https://ganthausdjango.onrender.com/token/",
-      user,
+    const { data } = await AwaitToastCustom(
       {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-      { withCredentials: true }
-    );
+        promise: axios.post(
+          "https://ganthausdjango.onrender.com/token/",
+          user,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
+          { withCredentials: true }
+        )
+          .then((data) => {
+            if (data.status === 200) {
+              console.log(data)
+              localStorage.clear();
+              localStorage.setItem("access_token", data.access);
+              localStorage.setItem("refresh_token", data.refresh);
+              axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
+              window.location.href = "/";
+            } else {
+              throw new Error("Ha ocurrido un error");
+            }
+          }
+          )
+      }
+    )
 
-    console.log(data);
-    localStorage.clear();
-    localStorage.setItem("access_token", data.access);
-    localStorage.setItem("refresh_token", data.refresh);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
-    window.location.href = "/";
   };
 
   return (
@@ -46,11 +57,11 @@ export const Login = () => {
             <h3 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl my-5">Login</h3>
             <div >
               <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="username">
-                Username
+                Usuario
               </label>
               <input
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                placeholder="Enter Username"
+                placeholder="Agregar usuario"
                 name="username"
                 type="text"
                 id="username"
@@ -62,14 +73,14 @@ export const Login = () => {
             </div>
             <div className="">
               <label className="block mb-2 text-sm font-medium text-gray-900" htmlFor="password">
-                Password
+                Contraseña
               </label>
               <input
                 name="password"
                 type="password"
                 id="password"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                placeholder="Enter password"
+                placeholder="Ingresar contraseña"
                 value={password}
                 required
                 onChange={(e) => setPassword(e.target.value)}
@@ -80,7 +91,7 @@ export const Login = () => {
                 type="submit"
                 className="border rounded-md p-2 w-20 bg-blue-200"
               >
-                Submit
+                Confirmar
               </button>
             </div>
           </div>

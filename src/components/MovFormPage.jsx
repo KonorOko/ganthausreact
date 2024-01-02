@@ -6,8 +6,8 @@ import {
   updateMovement,
   getMovement,
 } from "../api/admin.api";
-import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { AwaitToast } from './ui/AwaitToast';
 
 export function MovFormPage({ setActualizar, actualizar }) {
   const {
@@ -18,23 +18,27 @@ export function MovFormPage({ setActualizar, actualizar }) {
   } = useForm();
   const params = useParams();
   const navigate = useNavigate();
-  const toastCreateSuccess = () => toast.success("Registro agregado!");
-  const toastUpdateSuccess = () => toast.success("Registro actualizado!");
-  const toastDeleteSuccess = () => toast.success("Registro eliminado!");
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       try {
-        await updateMovement(params.id, data);
-        toastUpdateSuccess();
+        await AwaitToast({ 
+          promise: updateMovement(params.id, data), 
+          loading: 'Actualizando registro...', 
+          success: 'Registro actualizado!', 
+          error: 'Ha ocurrido un error' });
         navigate("/admin/cajachica/datapage");
       } catch (error) {
         console.log("Ha sucedido un error:", error);
       }
     } else {
       try {
-        await createMovement(data);
+        await AwaitToast({
+          promise: createMovement(data),
+          loading: "Agregando registro...",
+          success: "Registro agregado!",
+          error: "Ha ocurrido un error",
+        });
         setActualizar(!actualizar);
-        toastCreateSuccess();
       } catch (error) {
         console.log("Ha sucedido un error:", error);
       }
@@ -112,8 +116,12 @@ export function MovFormPage({ setActualizar, actualizar }) {
                 "Estas seguro de eliminar este registro?"
               );
               if (accepted) {
-                await deleteMovement(params.id);
-                toastDeleteSuccess();
+                await AwaitToast({
+                  promise: deleteMovement(params.id),
+                  loading: "Eliminando registro...",
+                  success: "Registro eliminado!",
+                  error: "Ha ocurrido un error",
+                });
                 navigate("/admin/cajachica/datapage");
               }
             }}

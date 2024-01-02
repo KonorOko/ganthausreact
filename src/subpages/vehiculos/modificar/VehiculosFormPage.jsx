@@ -6,10 +6,10 @@ import {
   updateVehiculo,
   getVehiculo,
 } from "../../../api/admin.api";
-import toast from "react-hot-toast";
+import { AwaitToast } from '../../../components/ui/AwaitToast';
 import { useNavigate, useParams } from "react-router-dom";
 
-export function VehiculosFormPage({ setActualizar, actualizar, link}) {
+export function VehiculosFormPage({ setActualizar, actualizar, link }) {
   const {
     register,
     handleSubmit,
@@ -18,14 +18,15 @@ export function VehiculosFormPage({ setActualizar, actualizar, link}) {
   } = useForm();
   const params = useParams();
   const navigate = useNavigate();
-  const toastCreateSuccess = () => toast.success("Registro agregado!");
-  const toastUpdateSuccess = () => toast.success("Registro actualizado!");
-  const toastDeleteSuccess = () => toast.success("Registro eliminado!");
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       try {
-        await updateVehiculo(params.id, data);
-        toastUpdateSuccess();
+        await AwaitToast({
+          promise: updateVehiculo(params.id, data),
+          loading: "Actualizando registro...",
+          success: "Registro actualizado!",
+          error: "Ha ocurrido un error",
+        });
         navigate(link);
       } catch (error) {
         console.log("Ha sucedido un error:", error);
@@ -41,9 +42,13 @@ export function VehiculosFormPage({ setActualizar, actualizar, link}) {
         if (data.placa === "") {
           delete data.placa;
         }
-        await createVehiculo(data);
+        await AwaitToast({
+          promise: createVehiculo(data),
+          loading: "Agregando registro...",
+          success: "Registro agregado!",
+          error: "Ha ocurrido un error",
+        });
         setActualizar(!actualizar);
-        toastCreateSuccess();
       } catch (error) {
         console.log("Ha sucedido un error:", error);
       }
@@ -122,8 +127,12 @@ export function VehiculosFormPage({ setActualizar, actualizar, link}) {
                 "Estas seguro de eliminar este registro?"
               );
               if (accepted) {
-                await deleteVehiculo(params.id);
-                toastDeleteSuccess();
+                await AwaitToast({
+                  promise: deleteVehiculo(params.id),
+                  loading: "Eliminando registro...",
+                  success: "Registro eliminado!",
+                  error: "Ha ocurrido un error",
+                });
                 navigate(link);
               }
             }}
