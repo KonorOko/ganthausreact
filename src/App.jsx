@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { AwaitToastCustom } from './components/ui/AwaitToast';
+import { loginToken } from './api/admin.api';
 
 export const Login = () => {
   useEffect(() => {
@@ -19,34 +20,12 @@ export const Login = () => {
       password: password,
     };
 
-    const { data } = await AwaitToastCustom(
+    const data = await AwaitToastCustom(
       {
-        promise: axios.post(
-          "https://ganthausdjango.onrender.com/token/",
-          user,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-          { withCredentials: true }
-        )
-          .then((data) => {
-            if (data.status === 200) {
-              console.log(data)
-              localStorage.clear();
-              localStorage.setItem("access_token", data.access);
-              localStorage.setItem("refresh_token", data.refresh);
-              axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
-              window.location.href = "/";
-            } else {
-              throw new Error("Ha ocurrido un error");
-            }
-          }
-          ),
-          loading: "Iniciando sesión...",
-          success: "Sesión iniciada!",
-          error: "No se pudo ingresar al sistema",
+        promise: loginToken(user),
+        loading: "Iniciando sesión...",
+        success: "Sesión iniciada!",
+        error: "No se pudo ingresar al sistema",
       }
     )
   };

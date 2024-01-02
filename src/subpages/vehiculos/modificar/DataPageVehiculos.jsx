@@ -6,7 +6,7 @@ import { VehiculosTable } from "../modificar/VehiculosTable";
 export function DataPageVehiculos() {
   const [actualizar, setActualizar] = useState(false);
   return (
-    <div className="md:ml-16">
+    <div className="md:ml-16 mb-20">
       <Navigation />
       <div className="my-2 md:px-5 py-2 min-h-screen bg-slate-50">
         <div className="rounded-md bg-white shadow-md mb-3 p-1">

@@ -77,8 +77,8 @@ export function MainPage() {
       <div className="py-2">
         <h2 className="text-center font-bold text-2xl mt-1 mb-2">Caja Chica</h2>
         <div className="flex flex-row justify-evenly">
-          <Metrics valor={movimientos[0].cantidad} name="Balance Total" />
-          <Metrics valor={movimientos[0].movimientos} name="Movimientos" />
+          <Metrics valor={`$${movimientos[0].cantidad}`} name="Balance Total" />
+          <Metrics valor={`${movimientos[0].movimientos}`} name="Movimientos" />
         </div>
         <div>
           <div className="text-center font-medium pb-0 mb-0 mt-2">
@@ -123,7 +123,7 @@ export function MainPage() {
   let names = ["Caja Chica", "Vehículos"];
 
   return (
-    <div className="md:ml-16">
+    <div className="md:ml-16 mb-20">
       <Navigation />
       <div className="my-2 md:px-5 py-2 rounded-md min-h-screen">
         <div className="rounded-md bg-white shadow-md mb-2 p-1">

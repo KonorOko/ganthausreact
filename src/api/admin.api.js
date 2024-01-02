@@ -15,6 +15,29 @@ const defaultApiVerificaciones = axios.create({
     baseURL: `${server}/vehiculos/api/v1/verificaciones/`
 })
 
+export const loginToken = (user) => axios.post(
+    `${server}/token/`,
+    user,
+    {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    },
+    { withCredentials: true },
+)
+    .then((data) => {
+        if (data.status === 200) {
+            // console.log(data.data.groups);
+            localStorage.clear();
+            localStorage.setItem("access_token", data.access);
+            localStorage.setItem("refresh_token", data.refresh);
+            axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
+            window.location.href = "/";
+        } else {
+            throw new Error("Ha ocurrido un error");
+        }
+    }
+    )
 
 export const getAllMovimientos = () => defaultApiCajaChica.get('/');
 

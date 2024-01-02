@@ -64,13 +64,13 @@ export default function Settings() {
     return (
       <div>
         <ul>
-          <li>
+          <li className="flex flex-col mt-1">
             <label>Salir de la sesión</label>
             <a href="/logout">
               <button className="bg-blue-50 border rounded-md w-24 my-1">Logout</button>
             </a>
           </li>
-          <li>
+          <li className="flex flex-col mt-5">
             <label>Ir al inicio</label>
             <a href="/">
               <button className="bg-blue-50 border rounded-md w-24 my-1">Home</button>
@@ -91,16 +91,18 @@ export default function Settings() {
   }
   let names = ["General",];
   return (
-    <div className="min-h-screen bg-slate-50 md:ml-16">
-      <div className="md:px-5">
-        <h1 className="text-lg font-bold mb-5">
+    <div className="min-h-screen md:ml-16">
+      <div className="md:px-10">
+        <h1 className="text-2xl font-bold mt-5 mb-3">
           Configuración
         </h1>
-        <div className="text-md font-medium text-center text-gray-500 border-b border-gray-200 bg-white">
-          <Tabs names={names} tab={tab} setTab={setTab} />
-        </div>
-        <div className="px-2">
-          {currentTab()}
+        <div className="bg-slate-50">
+          <div className="text-md font-medium text-center text-gray-500 border-b border-gray-200">
+            <Tabs names={names} tab={tab} setTab={setTab} />
+          </div>
+          <div className="px-2">
+            {currentTab()}
+          </div>
         </div>
       </div>
     </div>
