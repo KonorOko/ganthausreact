@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 import {
   createVerificacion,
   deleteVerificacion,
@@ -8,6 +8,7 @@ import {
   updateVerificacion,
 } from "../../../api/admin.api";
 import toast from "react-hot-toast";
+import {AwaitToast} from '../../../components/ui/AwaitToast';
 import { useNavigate, useParams } from "react-router-dom";
 
 export function VerificacionesFormPage({ setActualizar, actualizar, link }) {
@@ -21,23 +22,30 @@ export function VerificacionesFormPage({ setActualizar, actualizar, link }) {
   } = useForm();
   const params = useParams();
   const navigate = useNavigate();
-  const toastCreateSuccess = () => toast.success("Registro agregado!");
-  const toastUpdateSuccess = () => toast.success("Registro actualizado!");
   const toastDeleteSuccess = () => toast.success("Registro eliminado!");
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       try {
-        await updateVerificacion(params.id, data);
-        toastUpdateSuccess();
+        await AwaitToast({
+          promise: updateVerificacion(params.id, data),
+          loading: "Actualizando registro...",
+          success: "Registro actualizado!",
+          error: "Ha ocurrido un error",
+        });
         navigate(link);
       } catch (error) {
         console.log("Ha sucedido un error:", error);
       }
     } else {
       try {
-        await createVerificacion(data);
+        await AwaitToast({
+          promise: createVerificacion(data),
+          loading: "Agregando registro...",
+          success: "Registro agregado!",
+          error: "Ha ocurrido un error",
+        });
+        Formulario.reset();
         setActualizar(!actualizar);
-        toastCreateSuccess();
       } catch (error) {
         console.log("Ha sucedido un error:", error);
       }
@@ -65,7 +73,7 @@ export function VerificacionesFormPage({ setActualizar, actualizar, link }) {
 
   return (
     <div className="justify-center w-full">
-      <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1">
+      <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1" id="Formulario">
         <div className="w-full">
           <label className="font-bold">Vehículo</label>
           <select
@@ -111,8 +119,12 @@ export function VerificacionesFormPage({ setActualizar, actualizar, link }) {
                 "Estas seguro de eliminar este registro?"
               );
               if (accepted) {
-                await deleteVerificacion(params.id);
-                toastDeleteSuccess();
+                await AwaitToast({
+                  promise: deleteVerificacion(params.id),
+                  loading: "Eliminando registro...",
+                  success: "Registro eliminado!",
+                  error: "Ha ocurrido un error",
+                });
                 navigate(link);
               }
             }}

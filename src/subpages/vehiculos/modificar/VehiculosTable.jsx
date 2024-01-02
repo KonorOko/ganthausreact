@@ -8,6 +8,7 @@ export function VehiculosTable({ actualizar }) {
     modelo: "...",
     año: "...",
     placa: "...",
+    conductor: "...",
   }]);
   useEffect(() => {
     async function loadVehiculos() {
@@ -33,6 +34,10 @@ export function VehiculosTable({ actualizar }) {
     {
       header: "Placa",
       accessorKey: "placa",
+    },
+    {
+      header: "Conductor",
+      accessorKey: "conductor",
     },
   ];
   return (

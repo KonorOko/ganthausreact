@@ -38,6 +38,7 @@ export function MovFormPage({ setActualizar, actualizar }) {
           success: "Registro agregado!",
           error: "Ha ocurrido un error",
         });
+        Formulario.reset();
         setActualizar(!actualizar);
       } catch (error) {
         console.log("Ha sucedido un error:", error);
@@ -67,7 +68,7 @@ export function MovFormPage({ setActualizar, actualizar }) {
 
   return (
     <div className="justify-center w-full">
-      <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1">
+      <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1" id="Formulario" >
         <div className="w-full">
           <label className="font-bold">Cantidad de la transacción</label>
           <input

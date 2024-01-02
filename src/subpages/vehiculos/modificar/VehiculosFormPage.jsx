@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import {
   createVehiculo,
   deleteVehiculo,
@@ -36,6 +36,9 @@ export function VehiculosFormPage({ setActualizar, actualizar, link }) {
         if (data.modelo === "") {
           delete data.modelo;
         }
+        if (data.conductor === "") {
+          delete data.conductor;
+        }
         if (data.año === "") {
           delete data.año;
         }
@@ -48,6 +51,7 @@ export function VehiculosFormPage({ setActualizar, actualizar, link }) {
           success: "Registro agregado!",
           error: "Ha ocurrido un error",
         });
+        Formulario.reset();
         setActualizar(!actualizar);
       } catch (error) {
         console.log("Ha sucedido un error:", error);
@@ -63,6 +67,7 @@ export function VehiculosFormPage({ setActualizar, actualizar, link }) {
         setValue("modelo", res.data.modelo);
         setValue("año", res.data.año);
         setValue("placa", res.data.placa);
+        setValue("conductor", res.data.conductor);
       }
     }
     loadVehiculo();
@@ -71,7 +76,7 @@ export function VehiculosFormPage({ setActualizar, actualizar, link }) {
 
   return (
     <div className="justify-center w-full">
-      <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1">
+      <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1" id="Formulario">
         <div className="w-full">
           <label className="font-bold">Número económico</label>
           <input
@@ -110,6 +115,15 @@ export function VehiculosFormPage({ setActualizar, actualizar, link }) {
             placeholder="Placa del vehículo"
             type='text'
             {...register("placa")}
+          />
+        </div>
+        <div>
+          <label className="font-bold">Conductor</label>
+          <input
+            className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            placeholder="Nombre del conductor"
+            type='text'
+            {...register("conductor")}
           />
         </div>
         <div>
