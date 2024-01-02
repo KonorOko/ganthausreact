@@ -43,7 +43,10 @@ export const Login = () => {
               throw new Error("Ha ocurrido un error");
             }
           }
-          )
+          ),
+          loading: "Iniciando sesión...",
+          success: "Sesión iniciada!",
+          error: "No se pudo ingresar al sistema",
       }
     )
 
