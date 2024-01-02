@@ -54,7 +54,7 @@ export function SimpleTable({
         />
       )}
       <table className="w-full text-xs md:text-base text-left rtl:text-right text-gray-500 border border-collapse md:table-fixed table-auto">
-        <thead className="text-gray-900 uppercase bg-blue-200 font-medium">
+        <thead className="text-gray-900 uppercase bg-blue-200 font-medium" style={{userSelect: "none"}}>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
