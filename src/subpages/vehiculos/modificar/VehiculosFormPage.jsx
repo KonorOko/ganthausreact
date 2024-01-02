@@ -73,7 +73,7 @@ export function VehiculosFormPage({ setActualizar, actualizar, link }) {
     <div className="justify-center w-full">
       <form onSubmit={onSubmit} className="p-2 mx-auto rounded-md my-1">
         <div className="w-full">
-          <label className="font-bold">Número</label>
+          <label className="font-bold">Número económico</label>
           <input
             className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             type="text"
