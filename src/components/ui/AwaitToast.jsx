@@ -23,7 +23,6 @@ export function AwaitToastCustom({ promise, loading = "Cargando...", success = "
                 error: error
             },
             {
-                position: "bottom-right",
                 style: {
                     minWidth: "250px",
                 },
