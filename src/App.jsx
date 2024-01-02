@@ -49,13 +49,12 @@ export const Login = () => {
           error: "No se pudo ingresar al sistema",
       }
     )
-
   };
 
   return (
-    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 bg-blue-50">
-      <div className="fw-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 w-96 h-72">
-        <form className="space-y-4 md:space-y-6" onSubmit={submit}>
+    <div className="flex flex-col items-center justify-center px-6 md:py-8 mx-auto h-screen lg:py-0 bg-blue-50">
+      <div className="fw-full bg-white rounded-lg shadow dark:border mt-0 md:max-w-md xl:p-0 w-96 md:h-72 h-screen">
+        <form className="md:space-y-6 mt-20 mx-1" onSubmit={submit}>
           <div className="px-4">
             <h3 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl my-5">Login</h3>
             <div >

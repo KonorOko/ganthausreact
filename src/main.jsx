@@ -14,7 +14,7 @@ import { DataVerificacionesPage } from "./subpages/vehiculos/verificacion/DataVe
 import { EditVehiculos } from "./subpages/vehiculos/modificar/EditVehiculos";
 import { EditVerificaciones } from "./subpages/vehiculos/verificacion/EditVerificaciones";
 import Settings, { Logout } from "./pages/Settings";
-import Main from "./pages/Main";
+import Main from "./pages/DashboardPage";
 import "./interceptor/axios";
 
 const router = createBrowserRouter([
@@ -58,6 +58,10 @@ const router = createBrowserRouter([
         path: "admin/vehiculos/verificaciones/:id",
         element: <EditVerificaciones />,
       },
+      {
+        path: "/settings",
+        element: <Settings />,
+      },
     ],
   },
   {
@@ -67,10 +71,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-  },
-  {
-    path: "/settings",
-    element: <Settings />,
   },
   {
     path: "/logout",

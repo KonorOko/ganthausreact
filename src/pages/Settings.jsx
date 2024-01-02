@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Tabs } from '../components/ui/Tabs';
+import { Navigation } from '../components/Navigation';
 
 export const Logout = () => {
   useEffect(() => {
@@ -48,6 +50,7 @@ export const Logout = () => {
         );
         console.error("Error during logout:", e);
         console.log("logout not working");
+        window.location.href = "/login";
       }
     })();
   }, []);
@@ -55,27 +58,50 @@ export const Logout = () => {
 };
 
 export default function Settings() {
-  return (
-    <div className="flex col justify-center h-screen items-center bg-white">
-      <div className="text-center border rounded-md bg-slate-50 w-64 h-72 flex col justify-center items-center">
+  const [tab, setTab] = useState("General");
+
+  function generalTab() {
+    return (
+      <div>
         <ul>
           <li>
-            <h1 className="text-lg font-bold mb-5">
-              Configuración
-            </h1>
+            <label>Salir de la sesión</label>
+            <a href="/logout">
+              <button className="bg-blue-50 border rounded-md w-24 my-1">Logout</button>
+            </a>
           </li>
           <li>
-        <a href="/logout">
-          <button className="bg-blue-50 border rounded-md w-24 my-1">Logout</button>
-        </a>
+            <label>Ir al inicio</label>
+            <a href="/">
+              <button className="bg-blue-50 border rounded-md w-24 my-1">Home</button>
+            </a>
           </li>
-          <li>
-          <a href="/">
-          <button className="bg-blue-50 border rounded-md w-24 my-1">Home</button>
-        </a>
-          </li>
-
         </ul>
+      </div>
+    )
+  }
+
+  function currentTab() {
+    switch (tab) {
+      case "General":
+        return generalTab();
+      default:
+        return <div>...</div>;
+    }
+  }
+  let names = ["General",];
+  return (
+    <div className="min-h-screen bg-slate-50 md:ml-16">
+      <div className="md:px-5">
+        <h1 className="text-lg font-bold mb-5">
+          Configuración
+        </h1>
+        <div className="text-md font-medium text-center text-gray-500 border-b border-gray-200 bg-white">
+          <Tabs names={names} tab={tab} setTab={setTab} />
+        </div>
+        <div className="px-2">
+          {currentTab()}
+        </div>
       </div>
     </div>
   );
