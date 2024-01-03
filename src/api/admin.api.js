@@ -27,10 +27,12 @@ export const loginToken = (user) => axios.post(
 )
     .then((data) => {
         if (data.status === 200) {
-            // console.log(data.data.groups);
             localStorage.clear();
-            localStorage.setItem("access_token", data.access);
-            localStorage.setItem("refresh_token", data.refresh);
+            localStorage.setItem("access_token", data.data.access);
+            localStorage.setItem("refresh_token", data.data.refresh);
+            localStorage.setItem("username", data.data.username)
+            localStorage.setItem("role", data.data.groups[0])
+            console.log(data.data)
             axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
             window.location.href = "/";
         } else {

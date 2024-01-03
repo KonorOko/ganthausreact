@@ -10,6 +10,12 @@ import { Tabs } from "../components/ui/Tabs";
 import { Navigation } from "../components/Navigation";
 
 export function MainPage() {
+  /*
+  if (localStorage.getItem("role") !== "Admin") {
+    window.location.href = "/";
+  }
+  */
+ 
   const [ultimosMovimientos, setUltimosMovimientos] = useState([
     { id: "...", cantidad: "...", motivo: "...", fecha: "..." },
   ]);

@@ -27,17 +27,18 @@ export function SidebarMain() {
     <main className="App">
       {isAuth ?
       <Navbar>
-      <Sidebar>
+      <Sidebar username={localStorage.getItem("username")} role={localStorage.getItem("role")}>
         <SidebarItem
           icon={<LayoutDashboard size={30} />}
           text={"Dashboard"}
           link={"/"}
         />
+        {localStorage.getItem("role") === "Admin" ?
         <SidebarItem
           icon={<BookKey size={30} />}
           text={"Administrador"}
           link={"/admin"}
-        />
+        /> : null}
         <SidebarItem
           icon={<Boxes size={30} />}
           text={"Inventario"}

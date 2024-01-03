@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../assets/ganthaus-distribuidora-380.jpg";
 const SidebarContext = createContext();
 
-export function Sidebar({ children }) {
+export function Sidebar({ children, username = "none", role = "none"}) {
   const [expanded, setExpanded] = useState(false);
   return (
     <aside className="fixed md:top-0 left-0 z-40 transition-transform translate-x-0 md:h-full bottom-0 w-full md:w-auto">
@@ -30,9 +30,29 @@ export function Sidebar({ children }) {
         </div>
 
         <SidebarContext.Provider value={{ expanded }}>
-          <ul className="md:flex-1 px-3 md:flex md:flex-col grid grid-cols-7">{children}</ul>
+          <ul className="md:flex-1 px-3 md:flex md:flex-col grid grid-cols-7">
+            {children}
+          </ul>
         </SidebarContext.Provider>
-
+        <div className="border-t md:flex p-3 hidden">
+          <img
+            src={`https://ui-avatars.com/api/?name=${username}&background=6bccf2`}
+            alt=""
+            className="w-10 h-10 rounded-md"
+          />
+          <div
+            className={`
+              flex justify-between items-center
+              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
+          `}
+          >
+            <div className="leading-4">
+              <h4 className="font-semibold">{username}</h4>
+              <span className="text-xs text-gray-600">{role}</span>
+            </div>
+            <MoreVertical size={20} />
+          </div>
+        </div>
       </nav>
     </aside>
   );
