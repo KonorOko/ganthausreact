@@ -67,7 +67,7 @@ export function SimpleTable({
                     {header.column.columnDef.header}
                     {
                       { asc: "↑", desc: "↓" }[
-                        header.column.getIsSorted() ?? null
+                        [header.column.getIsSorted()] ?? null
                       ]
                     }
                   </div>
