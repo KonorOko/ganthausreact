@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-export function ButtonDrop({ props, name, links }) {
+export function ButtonDrop({ props, name, links, className }) {
   const [open, setOpen] = useState(false);
   const Menus = [...props];
   const menuRef = useRef();
@@ -15,7 +15,7 @@ export function ButtonDrop({ props, name, links }) {
   return (
     <div className="relative mx-0 z-50">
       <button
-        className="hover:text-blue-50 border-blue-800 bg-blue-300 rounded-lg px-2 md:px-6 shadow-lg text-base md:text-lg mt-auto"
+        className={`${className}`}
         ref={buttonRef}
         onClick={() => setOpen(!open)}
       >
@@ -24,7 +24,7 @@ export function ButtonDrop({ props, name, links }) {
       {open && (
         <div
           ref={menuRef}
-          className="overflow-hidden rounded-md bg-white p-1 md:p-1 w-32 md:w-40 shadow-lg absolute top-10 -z-50 -translate-x-1/2 left-1/2"
+          className="overflow-hidden rounded-md bg-white p-1 md:p-1 w-32 md:w-36 shadow-lg absolute top-10 -z-50 -translate-x-1/2 left-1/2"
         >
           <ul className="-z-50">
             {Menus.map((menu, index) => (

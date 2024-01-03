@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const server = "https://ganthausdjango.onrender.com"
+const server = "http://localhost:8000"
 
 const production = "https://ganthausdjango.onrender.com"
 
@@ -13,6 +13,10 @@ const defaultApiVehiculos = axios.create({
 
 const defaultApiVerificaciones = axios.create({
     baseURL: `${server}/vehiculos/api/v1/verificaciones/`
+})
+
+const defaultApiTenencias = axios.create({
+    baseURL: `${server}/vehiculos/api/v1/tenencias/`
 })
 
 export const loginToken = (user) => axios.post(
@@ -47,17 +51,42 @@ export const User = (token) => axios.get(`${server}/users/`, {
     }
 })
 
-export const getAllMovimientos = () => defaultApiCajaChica.get('/');
+export const getAllMovimientos = () => defaultApiCajaChica.get('/', {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const createMovement = (task) => defaultApiCajaChica.post('/', task);
+export const createMovement = (data) => defaultApiCajaChica.post('/', data, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const deleteMovement = (id) => defaultApiCajaChica.delete(`/${id}/`);
+export const deleteMovement = (id) => defaultApiCajaChica.delete(`/${id}/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const updateMovement = (id, task) => defaultApiCajaChica.put(`/${id}/`, task);
+export const updateMovement = (id, task) => defaultApiCajaChica.put(`/${id}/`, task, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getMovement = (id) => defaultApiCajaChica.get(`/${id}/`);
+export const getMovement = (id) => defaultApiCajaChica.get(`/${id}/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getAllVehiculos = () => defaultApiVehiculos.get('/');
+export const getAllVehiculos = () => defaultApiVehiculos.get('/',);
 
 export const createVehiculo = (task) => defaultApiVehiculos.post('/', task);
 
@@ -75,20 +104,65 @@ export const updateVerificacion = (id, task) => defaultApiVerificaciones.put(`/$
 
 export const getVerificacion = (id) => defaultApiVerificaciones.get(`/${id}/`);
 
+export const getAllTenencias = () => defaultApiTenencias.get('/');
+
+export const createTenencia = (task) => defaultApiTenencias.post('/', task);
+
+export const deleteTenencia = (id) => defaultApiTenencias.delete(`/${id}/`);
+
+export const updateTenencia = (id, task) => defaultApiTenencias.put(`/${id}/`, task);
+
+export const getTenencia = (id) => defaultApiTenencias.get(`/${id}/`);
+
 export const getVehiculo = (id) => defaultApiVehiculos.get(`/${id}/`);
 
-export const getBalance = () => axios.get(`${server}/cajachica/api/v1/balance/`);
+export const getBalance = () => axios.get(`${server}/cajachica/api/v1/balance/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getBalanceTotal = () => axios.get(`${server}/cajachica/api/v1/balance_total/`);
+export const getBalanceTotal = () => axios.get(`${server}/cajachica/api/v1/balance_total/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getUltimosMovimientos = () => axios.get(`${server}/cajachica/api/v1/ultimos_movimientos/`);
+export const getUltimosMovimientos = () => axios.get(`${server}/cajachica/api/v1/ultimos_movimientos/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getGasolina = () => axios.get(`${server}/cajachica/api/v1/movimientos_gasolina/`);
+export const getGasolina = () => axios.get(`${server}/cajachica/api/v1/movimientos_gasolina/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getTransacciones = () => axios.get(`${server}/cajachica/api/v1/movimientos_transacciones/`);
+export const getTransacciones = () => axios.get(`${server}/cajachica/api/v1/movimientos_transacciones/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getApoyos = () => axios.get(`${server}/cajachica/api/v1/movimientos_apoyos/`);
+export const getApoyos = () => axios.get(`${server}/cajachica/api/v1/movimientos_apoyos/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
-export const getAnalisis = () => axios.get(`${server}/cajachica/api/v1/analitics_data/`);
+export const getAnalisis = () => axios.get(`${server}/cajachica/api/v1/analitics_data/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
+    }
+});
 
 export const getFirstVerificaciones = () => axios.get(`${server}/vehiculos/api/v1/first_verificaciones/`);

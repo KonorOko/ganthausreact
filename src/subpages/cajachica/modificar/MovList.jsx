@@ -11,7 +11,7 @@ export function MovList({ actualizar }) {
   }]);
   useEffect(() => {
     async function loadMovimientos() {
-      const res = await getAllMovimientos();
+      const res = await getAllMovimientos(localStorage.getItem("access_token"));
       setMovimientos(res.data.reverse());
     }
     loadMovimientos();
