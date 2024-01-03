@@ -15,7 +15,7 @@ export function MainPage() {
     window.location.href = "/";
   }
   */
- 
+
   const [ultimosMovimientos, setUltimosMovimientos] = useState([
     { id: "...", cantidad: "...", motivo: "...", fecha: "..." },
   ]);
@@ -48,7 +48,7 @@ export function MainPage() {
     }
     loadFirstVerificaciones();
   }, []);
-  
+
   const columnsFirstVerificaciones = [
     {
       header: "Vehículo",
@@ -81,21 +81,25 @@ export function MainPage() {
   function cajaChicaTab() {
     return (
       <div className="py-2">
-        <h2 className="text-center font-bold text-2xl mt-1 mb-2">Caja Chica</h2>
-        <div className="flex flex-row justify-evenly">
-          <Metrics valor={`$${movimientos[0].cantidad}`} name="Balance Total" />
-          <Metrics valor={`${movimientos[0].movimientos}`} name="Movimientos" />
-        </div>
-        <div>
-          <div className="text-center font-medium pb-0 mb-0 mt-2">
-            Últimos movimientos
-          </div>
-          <div className="border rounded-md shadow-md m-3">
-            <SimpleTable data={ultimosMovimientos} columns={columnsCajaChica} />
-          </div>
-        </div>
+        {
+          localStorage.getItem("role") === "Admin" ?
+            <div>
+              <h2 className="text-center font-bold text-2xl mt-1 mb-2">Caja Chica</h2>
+              <div className="flex flex-row justify-evenly">
+                <Metrics valor={`$${movimientos[0].cantidad}`} name="Balance Total" />
+                <Metrics valor={`${movimientos[0].movimientos}`} name="Movimientos" />
+              </div>
+              <div>
+                <div className="text-center font-medium pb-0 mb-0 mt-2">
+                  Últimos movimientos
+                </div>
+                <div className="border rounded-md shadow-md m-3">
+                  <SimpleTable data={ultimosMovimientos} columns={columnsCajaChica} />
+                </div>
+              </div>
+            </div> : null}
       </div>
-    );
+    )
   }
 
   function vehiculosTab() {
@@ -104,13 +108,13 @@ export function MainPage() {
         <h2 className="text-center font-bold text-2xl mt-1 mb-2">Vehículos</h2>
         <div className="flex flex-row justify-evenly">Work in progress...</div>
         <div>
-        <div className="text-center font-medium pb-0 mb-0 mt-2">
+          <div className="text-center font-medium pb-0 mb-0 mt-2">
             Verificaciones próximas
           </div>
 
-        <div className="border rounded-md shadow-md m-3">
-          <SimpleTable data={firstVerificaciones} columns={columnsFirstVerificaciones} />
-        </div>
+          <div className="border rounded-md shadow-md m-3">
+            <SimpleTable data={firstVerificaciones} columns={columnsFirstVerificaciones} />
+          </div>
         </div>
       </div>
     );

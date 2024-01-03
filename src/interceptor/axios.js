@@ -6,7 +6,6 @@ axios.interceptors.response.use(resp => resp, async error => {
     if (error.response.status === 401 && !refresh) {
         refresh = true;
 
-        console.log(localStorage.getItem('refresh_token'))
         const response = await axios.post('http://localhost:8000/token/refresh/', {
             refresh:localStorage.getItem('refresh_token')
         }, {

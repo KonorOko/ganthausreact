@@ -32,7 +32,6 @@ export const loginToken = (user) => axios.post(
             localStorage.setItem("refresh_token", data.data.refresh);
             localStorage.setItem("username", data.data.username)
             localStorage.setItem("role", data.data.groups[0])
-            console.log(data.data)
             axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
             window.location.href = "/";
         } else {
@@ -40,6 +39,13 @@ export const loginToken = (user) => axios.post(
         }
     }
     )
+
+export const User = (token) => axios.get(`${server}/users/`, {
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+    }
+})
 
 export const getAllMovimientos = () => defaultApiCajaChica.get('/');
 
