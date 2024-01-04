@@ -1,23 +1,17 @@
 import axios from 'axios'
+import api from '../interceptor/axios';
 
-const server = "https://ganthausdjango.onrender.com"
+const server = "http://localhost:8000"
 
 const production = "https://ganthausdjango.onrender.com"
 
-const defaultApiCajaChica = axios.create({
-    baseURL: `${server}/cajachica/api/v1/movimientos/`
-})
-const defaultApiVehiculos = axios.create({
-    baseURL: `${server}/vehiculos/api/v1/vehiculos/`
-})
+const defaultApiCajaChica = `${server}/cajachica/api/v1/movimientos/`
 
-const defaultApiVerificaciones = axios.create({
-    baseURL: `${server}/vehiculos/api/v1/verificaciones/`
-})
+const defaultApiVehiculos = `${server}/vehiculos/api/v1/vehiculos/`
 
-const defaultApiTenencias = axios.create({
-    baseURL: `${server}/vehiculos/api/v1/tenencias/`
-})
+const defaultApiVerificaciones = `${server}/vehiculos/api/v1/verificaciones/`
+
+const defaultApiTenencias = `${server}/vehiculos/api/v1/tenencias/`
 
 export const loginToken = (user) => axios.post(
     `${server}/token/`,
@@ -32,7 +26,6 @@ export const loginToken = (user) => axios.post(
     .then((data) => {
         if (data.status === 200) {
             console.log("---Login---")
-            console.log(data.data)
             localStorage.clear();
             localStorage.setItem("access_token", data.data.access);
             localStorage.setItem("refresh_token", data.data.refresh);
@@ -47,125 +40,60 @@ export const loginToken = (user) => axios.post(
     }
     )
 
-export const User = (token) => axios.get(`${server}/users/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-    }
-})
+export const User = () => api.get(`${server}/users/`)
 
-export const getAllMovimientos = () => defaultApiCajaChica.get('/', {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getAllMovimientos = () => api.get(defaultApiCajaChica);
 
-export const createMovement = (data) => defaultApiCajaChica.post('/', data, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const createMovement = (data) => api.post(defaultApiCajaChica, data);
 
-export const deleteMovement = (id) => defaultApiCajaChica.delete(`/${id}/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const deleteMovement = (id) => api.delete(`${defaultApiCajaChica}${id}/`);
 
-export const updateMovement = (id, task) => defaultApiCajaChica.put(`/${id}/`, task, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const updateMovement = (id, task) => api.put(`${defaultApiCajaChica}${id}/`, task);
 
-export const getMovement = (id) => defaultApiCajaChica.get(`/${id}/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getMovement = (id) => api.get(`${defaultApiCajaChica}${id}/`);
 
-export const getAllVehiculos = () => defaultApiVehiculos.get('/',);
+export const getAllVehiculos = () => api.get(defaultApiVehiculos,);
 
-export const createVehiculo = (task) => defaultApiVehiculos.post('/', task);
+export const createVehiculo = (task) => api.post(defaultApiVehiculos, task);
 
-export const deleteVehiculo = (id) => defaultApiVehiculos.delete(`/${id}/`);
+export const deleteVehiculo = (id) => api.delete(`${defaultApiVehiculos}${id}/`);
 
-export const updateVehiculo = (id, task) => defaultApiVehiculos.put(`/${id}/`, task);
+export const updateVehiculo = (id, task) => api.put(`${defaultApiVehiculos}${id}/`, task);
 
-export const getAllVerificaciones = () => defaultApiVerificaciones.get('/');
+export const getAllVerificaciones = () => api.get(defaultApiVerificaciones);
 
-export const createVerificacion = (task) => defaultApiVerificaciones.post('/', task);
+export const createVerificacion = (task) => api.post(defaultApiVerificaciones, task);
 
-export const deleteVerificacion = (id) => defaultApiVerificaciones.delete(`/${id}/`);
+export const deleteVerificacion = (id) => api.delete(`${defaultApiVerificaciones}${id}/`);
 
-export const updateVerificacion = (id, task) => defaultApiVerificaciones.put(`/${id}/`, task);
+export const updateVerificacion = (id, task) => api.put(`${defaultApiVerificaciones}${id}/`, task);
 
-export const getVerificacion = (id) => defaultApiVerificaciones.get(`/${id}/`);
+export const getVerificacion = (id) => api.get(`${defaultApiVerificaciones}${id}/`);
 
-export const getAllTenencias = () => defaultApiTenencias.get('/');
+export const getAllTenencias = () => api.get(defaultApiTenencias);
 
-export const createTenencia = (task) => defaultApiTenencias.post('/', task);
+export const createTenencia = (task) => api.post(defaultApiTenencias, task);
 
-export const deleteTenencia = (id) => defaultApiTenencias.delete(`/${id}/`);
+export const deleteTenencia = (id) => defaultApiTenencias.delete(`${defaultApiTenencias}${id}/`);
 
-export const updateTenencia = (id, task) => defaultApiTenencias.put(`/${id}/`, task);
+export const updateTenencia = (id, task) => defaultApiTenencias.put(`${defaultApiTenencias}${id}/`, task);
 
-export const getTenencia = (id) => defaultApiTenencias.get(`/${id}/`);
+export const getTenencia = (id) => defaultApiTenencias.get(`${defaultApiTenencias}${id}/`);
 
-export const getVehiculo = (id) => defaultApiVehiculos.get(`/${id}/`);
+export const getVehiculo = (id) => defaultApiVehiculos.get(`${defaultApiTenencias}${id}/`);
 
-export const getBalance = () => axios.get(`${server}/cajachica/api/v1/balance/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getBalance = () => api.get(`${server}/cajachica/api/v1/balance/`);
 
-export const getBalanceTotal = () => axios.get(`${server}/cajachica/api/v1/balance_total/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getBalanceTotal = () => api.get(`${server}/cajachica/api/v1/balance_total/`);
 
-export const getUltimosMovimientos = () => axios.get(`${server}/cajachica/api/v1/ultimos_movimientos/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getUltimosMovimientos = () => api.get(`${server}/cajachica/api/v1/ultimos_movimientos/`);
 
-export const getGasolina = () => axios.get(`${server}/cajachica/api/v1/movimientos_gasolina/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getGasolina = () => api.get(`${server}/cajachica/api/v1/movimientos_gasolina/`);
 
-export const getTransacciones = () => axios.get(`${server}/cajachica/api/v1/movimientos_transacciones/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getTransacciones = () => api.get(`${server}/cajachica/api/v1/movimientos_transacciones/`);
 
-export const getApoyos = () => axios.get(`${server}/cajachica/api/v1/movimientos_apoyos/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getApoyos = () => api.get(`${server}/cajachica/api/v1/movimientos_apoyos/`);
 
-export const getAnalisis = () => axios.get(`${server}/cajachica/api/v1/analitics_data/`, {
-    headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("access_token")}`
-    }
-});
+export const getAnalisis = () => api.get(`${server}/cajachica/api/v1/analitics_data/`);
 
-export const getFirstVerificaciones = () => axios.get(`${server}/vehiculos/api/v1/first_verificaciones/`);
+export const getFirstVerificaciones = () => api.get(`${server}/vehiculos/api/v1/first_verificaciones/`);

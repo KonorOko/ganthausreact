@@ -28,14 +28,22 @@ export function SidebarMain() {
   }, [isAuth]);
 
   useEffect(() => {
-    const dataUser = async (token) => {
-      const res = await User(token);
-      if (res.status === 200) {
-        localStorage.setItem("username", res.data[0].username);
-        localStorage.setItem("role", res.data[0].group);
+    const dataUser = async () => {
+      try {
+        console.log("Trying to get user data")
+        const res = await User();
+        if (res.status === 200) {
+          console.log("Success getting user data")
+          setUsername(res.data[0].username);
+          setRole(res.data[0].group);
+        }
+      } catch (e) {
+        console.error("Error during logout:", e);
+        console.log("logout not working");
+        window.location.href = "/login";
       }
     }
-    dataUser(localStorage.getItem("access_token"));
+    dataUser();
   }, [username, role]);
 
   return (
