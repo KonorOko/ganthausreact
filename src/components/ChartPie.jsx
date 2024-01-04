@@ -1,7 +1,7 @@
 import { PieChart, ResponsiveContainer, Pie, Tooltip, Cell } from "recharts";
 
 export function ChartPie({ data, height, dataKey, nameKey }) {
-  const COLORS = ['#0f5bff', '#7200fc', '#00bfff', '#b700ff'];
+  const COLORS = ['#0f5bff', '#7200fc', '#00bfff','#04a5c2', '#b700ff'];
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name }) => {
     const RADIAN = Math.PI / 180;
     const radius = 25 + innerRadius + (outerRadius - innerRadius);

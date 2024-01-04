@@ -53,6 +53,7 @@ export function Analisis() {
   const [datos, setDatos] = useState([
     { motivo: "gasolina", cantidad_total: 0 },
     { motivo: "apoyos", cantidad_total: 0 },
+    { motivo: "comisiones", cantidad_total: 0 },
     { motivo: "transaccion", cantidad_total: 0 },
     { motivo: "otros", cantidad_total: 0 },
   ]);
@@ -142,7 +143,7 @@ export function Analisis() {
             <ChartLine data={balanceTotal} height={300} />
           </div>
         </div>
-        <div className="md:w-2/3 border rounded-md md:mx-auto mb-3 shadow-md bg-white p-3">
+        <div className="md:w-3/4 border rounded-md md:mx-auto mb-3 shadow-md bg-white p-3">
           <h2 className="text-center font-bold text-lg pt-3">
             Egresos del mes
           </h2>
@@ -155,8 +156,9 @@ export function Analisis() {
               valor={`$ ${datos[1]["cantidad_total"]}`}
               name="Transacción"
             />
+            <Metrics valor={`$ ${datos[3]["cantidad_total"]}`} name="Comisiones" />
             <Metrics  valor={`$ ${datos[2]["cantidad_total"]}`} name="Apoyos" />
-            <Metrics valor={`$ ${datos[3]["cantidad_total"]}`} name="Otros" />
+            <Metrics valor={`$ ${datos[4]["cantidad_total"]}`} name="Otros" />
           </div>
           <div className="border-t">
             <ChartPie
