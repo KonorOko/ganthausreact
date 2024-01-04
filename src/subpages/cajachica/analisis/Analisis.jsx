@@ -12,6 +12,7 @@ import { ChartPie } from "../../../components/ChartPie";
 import { Tabs } from "../../../components/ui/Tabs";
 import { Metrics } from "../../../components/ui/Metrics";
 import { Navigation } from "../../../components/Navigation";
+import ToolTip from '../../../components/ui/ToolTip';
 
 export function Analisis() {
   const [balanceTotal, setBalanceTotal] = useState([[]]);
@@ -174,10 +175,12 @@ export function Analisis() {
               valor={`$ ${datos[0]["cantidad_total"]}`}
               name="Gasolina"
             />
+            <ToolTip message="Depositos y transferencias">
             <Metrics
               valor={`$ ${datos[1]["cantidad_total"]}`}
               name="Transacción"
             />
+            </ToolTip>
             <Metrics valor={`$ ${datos[3]["cantidad_total"]}`} name="Comisiones" />
             <Metrics valor={`$ ${datos[2]["cantidad_total"]}`} name="Apoyos" />
             <Metrics valor={`$ ${datos[4]["cantidad_total"]}`} name="Otros" />
