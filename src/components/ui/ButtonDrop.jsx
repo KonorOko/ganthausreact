@@ -24,7 +24,7 @@ export function ButtonDrop({ props, name, links, className }) {
       {open && (
         <div
           ref={menuRef}
-          className="overflow-hidden rounded-md bg-white p-1 md:p-1 w-32 md:w-36 shadow-lg absolute top-10 right-1 -z-50 md:-translate-x-1/2 md:left-1/2"
+          className="overflow-hidden rounded-md bg-white p-1 md:p-1 w-32 md:w-36 md:shadow-lg absolute top-10 right-1 -z-50 md:-translate-x-1/2 md:left-1/2"
         >
           <ul className="-z-50">
             {Menus.map((menu, index) => (

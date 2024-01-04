@@ -170,7 +170,7 @@ export function Analisis() {
           <h2 className="text-center font-bold text-lg pt-3">
             Egresos del mes
           </h2>
-          <div className="md:flex justify-evenly mb-3 mt-3 border-t pt-3 bg-blue-100">
+          <div className="md:flex justify-evenly mb-3 mt-3 border-t pt-3 md:bg-blue-100">
             <Metrics
               valor={`$ ${datos[0]["cantidad_total"]}`}
               name="Gasolina"
