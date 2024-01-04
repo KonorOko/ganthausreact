@@ -31,6 +31,8 @@ export const loginToken = (user) => axios.post(
 )
     .then((data) => {
         if (data.status === 200) {
+            console.log("---Login---")
+            console.log(data.data)
             localStorage.clear();
             localStorage.setItem("access_token", data.data.access);
             localStorage.setItem("refresh_token", data.data.refresh);
@@ -38,6 +40,7 @@ export const loginToken = (user) => axios.post(
             localStorage.setItem("role", data.data.groups[0])
             axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
             window.location.href = "/";
+            console.log("Login exitoso")
         } else {
             throw new Error("Ha ocurrido un error");
         }

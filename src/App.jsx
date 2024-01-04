@@ -19,6 +19,7 @@ export const Login = () => {
       username: username,
       password: password,
     };
+    console.log("-------------------")
 
     const data = await AwaitToastCustom(
       {
@@ -26,8 +27,9 @@ export const Login = () => {
         loading: "Iniciando sesión...",
         success: "Sesión iniciada!",
         error: "No se pudo ingresar al sistema",
-      }
+      },
     )
+    console.log("-------------------")
   };
 
   return (

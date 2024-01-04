@@ -81,8 +81,6 @@ export function MainPage() {
   function cajaChicaTab() {
     return (
       <div className="py-2">
-        {
-          localStorage.getItem("role") === "Admin" ?
             <div>
               <h2 className="text-center font-bold text-2xl mt-1 mb-2">Caja Chica</h2>
               <div className="flex flex-row justify-evenly">
@@ -97,7 +95,7 @@ export function MainPage() {
                   <SimpleTable data={ultimosMovimientos} columns={columnsCajaChica} />
                 </div>
               </div>
-            </div> : null}
+            </div> 
       </div>
     )
   }

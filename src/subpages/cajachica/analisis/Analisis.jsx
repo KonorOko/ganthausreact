@@ -155,7 +155,7 @@ export function Analisis() {
               valor={`$ ${datos[1]["cantidad_total"]}`}
               name="Transacción"
             />
-            <Metrics valor={`$ ${datos[2]["cantidad_total"]}`} name="Apoyos" />
+            <Metrics  valor={`$ ${datos[2]["cantidad_total"]}`} name="Apoyos" />
             <Metrics valor={`$ ${datos[3]["cantidad_total"]}`} name="Otros" />
           </div>
           <div className="border-t">
