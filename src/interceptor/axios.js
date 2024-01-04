@@ -29,6 +29,7 @@ axios.interceptors.response.use(resp => resp, async error => {
                 Navigate("/logout");
                 throw new Error("Ha ocurrido un error:", err);
             });
+        return response;
     }
     console.log("Not Refreshing");
     refresh = false;

@@ -34,7 +34,7 @@ export function SidebarMain() {
       }
     }
     dataUser(localStorage.getItem("access_token"));
-  }, []);
+  }, [localStorage.getItem("access_token")]);
 
   return (
     <main className="App">
