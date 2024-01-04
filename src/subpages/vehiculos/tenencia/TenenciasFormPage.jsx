@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Form, useForm } from "react-hook-form";
 import {
-  createVerificacion,
-  deleteVerificacion,
-  getVerificacion,
+  createTenencia,
+  deleteTenencia,
+  getTenencia,
   getAllVehiculos,
-  updateVerificacion,
+  updateTenencia,
 } from "../../../api/admin.api";
 import {AwaitToast} from '../../../components/ui/AwaitToast';
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,7 +25,7 @@ export function TenenciasFormPage({ setActualizar, actualizar, link }) {
     if (params.id) {
       try {
         await AwaitToast({
-          promise: updateVerificacion(params.id, data),
+          promise: updateTenencia(params.id, data),
           loading: "Actualizando registro...",
           success: "Registro actualizado!",
           error: "Ha ocurrido un error",
@@ -37,7 +37,7 @@ export function TenenciasFormPage({ setActualizar, actualizar, link }) {
     } else {
       try {
         await AwaitToast({
-          promise: createVerificacion(data),
+          promise: createTenencia(data),
           loading: "Agregando registro...",
           success: "Registro agregado!",
           error: "Ha ocurrido un error",
@@ -51,14 +51,14 @@ export function TenenciasFormPage({ setActualizar, actualizar, link }) {
   });
 
   useEffect(() => {
-    async function loadVerificacion() {
+    async function loadTenencia() {
       if (params.id) {
-        const res = await getVerificacion(params.id);
+        const res = await getTenencia(params.id);
         setValue("vehiculo", res.data.vehiculo);
         setValue("fecha", res.data.fecha);
       }
     }
-    loadVerificacion();
+    loadTenencia();
   }, []);
 
   useEffect(() => {
@@ -118,7 +118,7 @@ export function TenenciasFormPage({ setActualizar, actualizar, link }) {
               );
               if (accepted) {
                 await AwaitToast({
-                  promise: deleteVerificacion(params.id),
+                  promise: deleteTenencia(params.id),
                   loading: "Eliminando registro...",
                   success: "Registro eliminado!",
                   error: "Ha ocurrido un error",

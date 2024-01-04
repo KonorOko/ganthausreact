@@ -12,7 +12,7 @@ export function EditTenencias() {
           <h1 className="p-2 w-10/12 font-bold text-3xl">Edita el registro</h1>
         </div>
         <div className="border rounded-md shadow-md mb-3 bg-white">
-          <TenenciasFormPage link={"/admin/vehiculos/Tenencias/"} />
+          <TenenciasFormPage link={"/admin/vehiculos/tenencias/"} />
         </div>
       </div>
     </div>

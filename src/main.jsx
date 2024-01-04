@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         element: <EditVerificaciones />,
       },
       {
-        path: "admin/vehiculos/:id",
+        path: "admin/vehiculos/tenencias/:id",
         element: <EditTenencias />,
       },
       {

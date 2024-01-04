@@ -74,13 +74,13 @@ export const getAllTenencias = () => api.get(defaultApiTenencias);
 
 export const createTenencia = (task) => api.post(defaultApiTenencias, task);
 
-export const deleteTenencia = (id) => defaultApiTenencias.delete(`${defaultApiTenencias}${id}/`);
+export const deleteTenencia = (id) => api.delete(`${defaultApiTenencias}${id}/`);
 
-export const updateTenencia = (id, task) => defaultApiTenencias.put(`${defaultApiTenencias}${id}/`, task);
+export const updateTenencia = (id, task) => api.put(`${defaultApiTenencias}${id}/`, task);
 
-export const getTenencia = (id) => defaultApiTenencias.get(`${defaultApiTenencias}${id}/`);
+export const getTenencia = (id) => api.get(`${defaultApiTenencias}${id}/`);
 
-export const getVehiculo = (id) => defaultApiVehiculos.get(`${defaultApiTenencias}${id}/`);
+export const getVehiculo = (id) => api.get(`${defaultApiTenencias}${id}/`);
 
 export const getBalance = () => api.get(`${server}/cajachica/api/v1/balance/`);
 
