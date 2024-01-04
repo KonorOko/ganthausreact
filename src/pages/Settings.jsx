@@ -8,7 +8,7 @@ export const Logout = () => {
     (async () => {
       try {
         const { data } = await axios.post(
-          "http://localhost:8000/logout/",
+          "https://ganthausdjango.onrender.com/logout/",
           {
             refresh_token: localStorage.getItem("refresh_token"),
           },
