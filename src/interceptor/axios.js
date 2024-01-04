@@ -23,11 +23,18 @@ axios.interceptors.response.use(resp => resp, async error => {
                 localStorage.setItem("refresh_token", data.data.refresh);
                 axios.defaults.headers.common["Authorization"] = `Bearer ${data.data["access"]}`;
                 console.log("Refresh exitoso")
-                return data
+                const originalRequest = error.config;
+                originalRequest.headers['Authorization'] = `Bearer ${response.data.access}`;
+      
+                console.log("---Reattempting original request---");
+                return axios(originalRequest);
             }}).catch((err) => {
                 console.log("Error refreshing token")
                 Navigate("/logout");
                 throw new Error("Ha ocurrido un error:", err);
+            }).finally(() => {
+                console.log("Finally")
+                refresh = false;
             });
         return response;
     }

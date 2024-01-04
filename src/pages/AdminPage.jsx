@@ -28,7 +28,7 @@ export function MainPage() {
       setUltimosMovimientos(res.data.reverse());
     }
     loadMovimientos();
-  }, [localStorage.getItem("access_token")]);
+  }, []);
   useEffect(() => {
     async function loadMovimientos() {
       const res = await getBalanceTotal();
