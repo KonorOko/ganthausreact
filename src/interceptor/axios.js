@@ -44,6 +44,7 @@ api.interceptors.response.use(
         // it means the token has expired and we need to refresh it
         if (error.response.status === 401 && !originalRequest._retry) {
             if (isRefreshing) {
+                console.log("Adding request to queue")
                 return new Promise(function(resolve, reject) {
                     failedQueue.push({ resolve, reject });
                 }).then(token => {

@@ -16,6 +16,8 @@ import { EditVerificaciones } from "./subpages/vehiculos/verificacion/EditVerifi
 import { DataTenenciasPage } from './subpages/vehiculos/tenencia/DataTenenciasPage';
 import { EditTenencias } from './subpages/vehiculos/tenencia/EditTenencias';
 import Settings, { Logout } from "./pages/Settings";
+import { DataServiciosPage } from "./subpages/vehiculos/servicio/DataServiciosPage";
+import { EditServicios } from "./subpages/vehiculos/servicio/EditServicios";
 import Main from "./pages/DashboardPage";
 import "./interceptor/axios";
 
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
       {
         path: "admin/vehiculos/tenencias/:id",
         element: <EditTenencias />,
+      },
+      {
+        path: "admin/vehiculos/servicios",
+        element: <DataServiciosPage />,
+      },
+      {
+        path: "admin/vehiculos/servicios/:id",
+        element: <EditServicios />,
       },
       {
         path: "/settings",

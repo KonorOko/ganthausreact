@@ -2,7 +2,7 @@ import { ButtonDrop } from "./ui/ButtonDrop";
 
 export function Navigation() {
   const Menus = ["Modificar", "Análisis"];
-  const MenusVehiculos = ["Modificar", "Verificaciones", "Tenencias"];
+  const MenusVehiculos = ["Modificar", "Verificaciones","Servicios", "Tenencias"];
   return (
     <nav className="border-b font-medium border-blue-400 text-black text-lg shadow-md mb-2 bg-blue-400 sticky top-0 z-20">
       <div className="max-w-screen-xl flex flex-wrap items-end justify-end ml-auto p-1 md:px-10">
@@ -30,6 +30,7 @@ export function Navigation() {
               links={[
                 "admin/vehiculos/datapage/",
                 "admin/vehiculos/verificaciones/",
+                "admin/vehiculos/servicios/",
                 "admin/vehiculos/tenencias/",
               ]}
             />

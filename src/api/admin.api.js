@@ -13,6 +13,8 @@ const defaultApiVerificaciones = `${server}/vehiculos/api/v1/verificaciones/`
 
 const defaultApiTenencias = `${server}/vehiculos/api/v1/tenencias/`
 
+const defaultApiServicios = `${server}/vehiculos/api/v1/servicios/`
+
 export const loginToken = (user) => axios.post(
     `${server}/token/`,
     user,
@@ -81,6 +83,16 @@ export const updateTenencia = (id, task) => api.put(`${defaultApiTenencias}${id}
 export const getTenencia = (id) => api.get(`${defaultApiTenencias}${id}/`);
 
 export const getVehiculo = (id) => api.get(`${defaultApiTenencias}${id}/`);
+
+export const getAllServicios = () => api.get(defaultApiServicios);
+
+export const createServicio = (task) => api.post(defaultApiServicios, task);
+
+export const deleteServicio = (id) => api.delete(`${defaultApiServicios}${id}/`);
+
+export const updateServicio = (id, task) => api.put(`${defaultApiServicios}${id}/`, task);
+
+export const getServicio = (id) => api.get(`${defaultApiServicios}${id}/`);
 
 export const getBalance = () => api.get(`${server}/cajachica/api/v1/balance/`);
 
