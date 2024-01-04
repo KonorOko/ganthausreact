@@ -5,6 +5,7 @@ let refresh = false;
 
 axios.interceptors.response.use(resp => resp, async error => {
     console.log("---Intercepted---")
+    console.log(error.status)
     if (error.response.status === 401 && !refresh) {
         refresh = true;
         console.log("---Refreshing---")
@@ -27,6 +28,7 @@ axios.interceptors.response.use(resp => resp, async error => {
                 console.log("Refresh exitoso")
                 return data
             }}).catch((err) => {
+                console.log("Error refreshing token")
                 Navigate("/logout");
                 throw new Error("Ha ocurrido un error:", err);
             });
@@ -36,45 +38,3 @@ axios.interceptors.response.use(resp => resp, async error => {
     return Promise.reject(error)
 })
 
-axios.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        const originalRequest = error.config;
-
-        // If the error is a 401 and we have a refresh token, refresh the JWT token
-        if (
-            error.response.status === 401 &&
-            sessionStorage.getItem("refreshToken")
-        ) {
-            const refreshToken = sessionStorage.getItem("refreshToken");
-
-            let data = JSON.stringify({
-                refresh_token: refreshToken,
-            });
-
-            post("/refreshToken", data)
-                .then((response) => {
-                    sessionStorage.setItem("jwtToken", response.token);
-                    sessionStorage.setItem("refreshToken", response.refresh_token);
-
-                    // Re-run the original request that was intercepted
-                    originalRequest.headers.Authorization = `Bearer ${response.token}`;
-                    api(originalRequest)
-                        .then((response) => {
-                            return response.data;
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                    // return api(originalRequest)
-                })
-                .catch((err) => {
-                    // If there is an error refreshing the token, log out the user
-                    console.log(err);
-                });
-        }
-
-        // Return the original error if we can't handle it
-        return Promise.reject(error);
-    }
-);
