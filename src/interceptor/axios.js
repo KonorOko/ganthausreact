@@ -35,12 +35,13 @@ api.interceptors.response.use(
                 console.log("Try refresh token");
                 const refreshToken = localStorage.getItem('refresh_token');
                 const response = await axios.post(`${server}/token/refresh/`, { refresh: refreshToken });
+                console.log("Refresh token success, saving tokens.....");
                 const { access } = response.data;
                 const { refresh } = response.data;
-
                 localStorage.setItem('access_token', access);
                 localStorage.setItem('refresh_token', refresh);
-
+                console.log("Tokens saved")
+                
                 // Retry the original request with the new token
                 originalRequest.headers.Authorization = `Bearer ${access}`;
                 console.log("Retry original request");
