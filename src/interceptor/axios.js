@@ -24,9 +24,6 @@ axios.interceptors.response.use(resp => resp, async error => {
                 axios.defaults.headers.common["Authorization"] = `Bearer ${data.data["access"]}`;
                 console.log("Refresh exitoso")
                 const originalRequest = error.config;
-                originalRequest.headers['Authorization'] = `Bearer ${response.data.access}`;
-      
-                console.log("---Reattempting original request---");
                 return axios(originalRequest);
             }}).catch((err) => {
                 console.log("Error refreshing token")
