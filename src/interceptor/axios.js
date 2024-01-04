@@ -5,6 +5,20 @@ const api = axios.create({
     baseURL: `${server}/token/refresh/`,
 });
 
+let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error, token = null) => {
+    failedQueue.forEach(prom => {
+      if (error) {
+        prom.reject(error);
+      } else {
+        prom.resolve(token);
+      }
+    });
+  
+    failedQueue = [];
+  };
 // Add a request interceptor
 api.interceptors.request.use(
     (config) => {
@@ -29,33 +43,42 @@ api.interceptors.response.use(
         // If the error status is 401 and there is no originalRequest._retry flag,
         // it means the token has expired and we need to refresh it
         if (error.response.status === 401 && !originalRequest._retry) {
-            originalRequest._retry = true;
-
-            try {
-                console.log("Try refresh token");
-                const refreshToken = localStorage.getItem('refresh_token');
-                const response = await axios.post(`${server}/token/refresh/`, { refresh: refreshToken });
-                console.log("Refresh token success, saving tokens.....");
-                console.log("Data:", response.data);
-                const { access } = response.data;
-                const { refresh } = response.data;
-                localStorage.setItem('access_token', access);
-                localStorage.setItem('refresh_token', refresh);
-                console.log("Tokens saved")
-                
-                // Retry the original request with the new token
-                originalRequest.headers.Authorization = `Bearer ${access}`;
-                console.log("Retry original request");
-                return axios(originalRequest);
-            } catch (error) {
-                console.log("Refresh token error");
-                // Handle refresh token error or redirect to login
-                window.location.href = "/login";
+            if (isRefreshing) {
+                return new Promise(function(resolve, reject) {
+                    failedQueue.push({ resolve, reject });
+                }).then(token => {
+                    originalRequest.headers.Authorization = `Bearer ${token}`;
+                    return axios(originalRequest);
+                }).catch(err => {
+                    return Promise.reject(err);
+                });
             }
-        }
-        console.log("Interceptor error");
-        return Promise.reject(error);
-    }
-);
 
+
+            originalRequest._retry = true;
+            isRefreshing = true;
+
+            const refreshToken = localStorage.getItem('refresh_token');
+            return api.post(`${server}/token/refresh/`, { refresh: refreshToken })
+              .then(({data}) => {
+                localStorage.setItem('access_token', data.access);
+                localStorage.setItem('refresh_token', data.refresh);
+                console.log("Tokens saved")
+                originalRequest.headers.Authorization = `Bearer ${data.access}`;
+                processQueue(null, data.access);
+                return axios(originalRequest);
+              })
+              .catch(err => {
+                processQueue(err, null);
+                console.log("Refresh token error");
+                window.location.href = "/login";
+                return Promise.reject(err);
+              })
+              .finally(() => { isRefreshing = false });
+          }
+      
+          console.log("Interceptor error");
+          return Promise.reject(error);
+        }
+      );
 export default api
