@@ -1,7 +1,7 @@
 import axios from 'axios'
 import api from '../interceptor/axios';
 
-const server = "http://localhost:8000"
+const server = "https://ganthausdjango.onrender.com"
 
 const production = "https://ganthausdjango.onrender.com"
 
