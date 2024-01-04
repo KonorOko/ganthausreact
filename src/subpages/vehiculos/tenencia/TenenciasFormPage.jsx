@@ -93,11 +93,11 @@ export function TenenciasFormPage({ setActualizar, actualizar, link }) {
           </select>
         </div>
         <div>
-          <label className="font-bold">Verificación</label>
+          <label className="font-bold">Tenencia</label>
           <input
             className="mb-3 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:bg-blue-50 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             type="date"
-            placeholder="Fecha de verificación"
+            placeholder="Fecha de tenencia"
             {...register("fecha", { required: true })}
           />
           {errors.fecha && <span className="text-red-700">Este campo es requerido</span>}

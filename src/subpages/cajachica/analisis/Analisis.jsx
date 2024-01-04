@@ -166,11 +166,11 @@ export function Analisis() {
             <ChartLine data={balanceTotal} height={300} />
           </div>
         </div>
-        <div className="md:w-3/4 border rounded-md md:mx-auto mb-3 shadow-md bg-white p-3">
+        <div className="md:w-3/4 border rounded-md md:mx-auto mb-3 shadow-md bg-white py-3">
           <h2 className="text-center font-bold text-lg pt-3">
             Egresos del mes
           </h2>
-          <div className="md:flex justify-evenly mb-3 mt-3 border-t pt-3">
+          <div className="md:flex justify-evenly mb-3 mt-3 border-t pt-3 bg-blue-100">
             <Metrics
               valor={`$ ${datos[0]["cantidad_total"]}`}
               name="Gasolina"
