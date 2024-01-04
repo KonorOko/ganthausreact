@@ -51,11 +51,11 @@ export function Analisis() {
   }, []);
 
   const [datos, setDatos] = useState([
-    { motivo: "gasolina", cantidad_total: 0 },
-    { motivo: "apoyos", cantidad_total: 0 },
-    { motivo: "comisiones", cantidad_total: 0 },
-    { motivo: "transaccion", cantidad_total: 0 },
-    { motivo: "otros", cantidad_total: 0 },
+    { motivo: "gasolina", cantidad_total: '0.00' },
+    { motivo: "apoyos", cantidad_total: '0.00' },
+    { motivo: "comisiones", cantidad_total: '0.00' },
+    { motivo: "transaccion", cantidad_total: '0.00' },
+    { motivo: "otros", cantidad_total: '0.00' },
   ]);
   useEffect(() => {
     async function loadDatos() {
