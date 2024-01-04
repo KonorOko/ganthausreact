@@ -57,11 +57,26 @@ export function Analisis() {
     { motivo: "transaccion", cantidad_total: '0.00' },
     { motivo: "otros", cantidad_total: '0.00' },
   ]);
+
+  const [datosFloat, setDatosFloat] = useState([
+    { motivo: "gasolina", cantidad_total: 0.00 },
+    { motivo: "apoyos", cantidad_total: 0.00 },
+    { motivo: "comisiones", cantidad_total: 0.00 },
+    { motivo: "transaccion", cantidad_total: 0.00 },
+    { motivo: "otros", cantidad_total: 0.00 },
+  ]);
+
   useEffect(() => {
     async function loadDatos() {
       const resDatos = await getAnalisis();
       setDatos(resDatos.data);
+      setDatosFloat(datos.map(dato => ({
+        ...dato,
+        cantidad_total: parseFloat(dato.cantidad_total.replace(/,/g, ''))
+      }))
+      )
     }
+    console.log(datosFloat)
     loadDatos();
   }, []);
   const [tab, setTab] = useState("Gasolina");
@@ -157,14 +172,14 @@ export function Analisis() {
               name="Transacción"
             />
             <Metrics valor={`$ ${datos[3]["cantidad_total"]}`} name="Comisiones" />
-            <Metrics  valor={`$ ${datos[2]["cantidad_total"]}`} name="Apoyos" />
+            <Metrics valor={`$ ${datos[2]["cantidad_total"]}`} name="Apoyos" />
             <Metrics valor={`$ ${datos[4]["cantidad_total"]}`} name="Otros" />
           </div>
           <div className="border-t">
             <ChartPie
               dataKey="cantidad_total"
               nameKey="motivo"
-              data={datos}
+              data={datosFloat}
               height={300}
             />
           </div>
