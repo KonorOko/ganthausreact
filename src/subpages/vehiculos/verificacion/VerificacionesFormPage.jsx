@@ -7,7 +7,6 @@ import {
   getAllVehiculos,
   updateVerificacion,
 } from "../../../api/admin.api";
-import toast from "react-hot-toast";
 import {AwaitToast} from '../../../components/ui/AwaitToast';
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -22,7 +21,6 @@ export function VerificacionesFormPage({ setActualizar, actualizar, link }) {
   } = useForm();
   const params = useParams();
   const navigate = useNavigate();
-  const toastDeleteSuccess = () => toast.success("Registro eliminado!");
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       try {

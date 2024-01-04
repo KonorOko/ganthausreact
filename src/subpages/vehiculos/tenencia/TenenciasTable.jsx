@@ -35,7 +35,7 @@ export function TenenciasTable({ actualizar }) {
         download={true}
         buttonsPagination={true}
         editable={true}
-        link={"/admin/vehiculos/Tenencias/"}
+        link={"/admin/vehiculos/tenencias/"}
       />
     </div>
   );

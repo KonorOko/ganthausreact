@@ -14,6 +14,7 @@ import { DataVerificacionesPage } from "./subpages/vehiculos/verificacion/DataVe
 import { EditVehiculos } from "./subpages/vehiculos/modificar/EditVehiculos";
 import { EditVerificaciones } from "./subpages/vehiculos/verificacion/EditVerificaciones";
 import { DataTenenciasPage } from './subpages/vehiculos/tenencia/DataTenenciasPage';
+import { EditTenencias } from './subpages/vehiculos/tenencia/EditTenencias';
 import Settings, { Logout } from "./pages/Settings";
 import Main from "./pages/DashboardPage";
 import "./interceptor/axios";
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "admin/vehiculos/verificaciones/:id",
         element: <EditVerificaciones />,
+      },
+      {
+        path: "admin/vehiculos/:id",
+        element: <EditTenencias />,
       },
       {
         path: "/settings",
