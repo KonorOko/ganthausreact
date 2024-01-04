@@ -5,7 +5,6 @@ let refresh = false;
 
 axios.interceptors.response.use(resp => resp, async error => {
     console.log("---Intercepted---")
-    console.log(error.status)
     if (error.response.status === 401 && !refresh) {
         refresh = true;
         console.log("---Refreshing---")
@@ -22,8 +21,6 @@ axios.interceptors.response.use(resp => resp, async error => {
                 localStorage.clear();
                 localStorage.setItem("access_token", data.data.access);
                 localStorage.setItem("refresh_token", data.data.refresh);
-                localStorage.setItem("username", data.data.username)
-                localStorage.setItem("role", data.data.groups[0])
                 axios.defaults.headers.common["Authorization"] = `Bearer ${data.data["access"]}`;
                 console.log("Refresh exitoso")
                 return data
