@@ -16,6 +16,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import { User } from '../api/admin.api';
 
 export function SidebarMain() {
+  const [username, setUsername] = useState(localStorage.getItem("username"));
+  const [role, setRole] = useState(localStorage.getItem("role"));
   const [isAuth, setIsAuth] = useState(false);
   useEffect(() => {
     if (localStorage.getItem("access_token") === null) {
@@ -34,13 +36,13 @@ export function SidebarMain() {
       }
     }
     dataUser(localStorage.getItem("access_token"));
-  }, [localStorage.getItem("access_token")]);
+  }, [username, role]);
 
   return (
     <main className="App">
       {isAuth ?
         <Navbar>
-          <Sidebar username={localStorage.getItem("username")} role={localStorage.getItem("role")}>
+          <Sidebar username={username} role={role}>
             <SidebarItem
               icon={<LayoutDashboard size={30} />}
               text={"Dashboard"}
