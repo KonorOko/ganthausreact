@@ -27,7 +27,7 @@ export function ChartPie({ data, height, dataKey, nameKey }) {
           label={renderCustomizedLabel}
         >
         {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          <Cell key={`${entry.id} - ${index}}`} fill={COLORS[index % COLORS.length]} />
         ))}
         </Pie>
       </PieChart>

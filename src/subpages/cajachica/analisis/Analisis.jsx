@@ -70,15 +70,22 @@ export function Analisis() {
     async function loadDatos() {
       const resDatos = await getAnalisis();
       setDatos(resDatos.data);
+
+    }
+    loadDatos();
+  }, []);
+
+  useEffect(() => {
+    function dataChartPie() {
       setDatosFloat(datos.map(dato => ({
         ...dato,
         cantidad_total: parseFloat(dato.cantidad_total.replace(/,/g, ''))
       }))
       )
     }
-    console.log(datosFloat)
-    loadDatos();
-  }, []);
+    dataChartPie()
+  }, [datos]);
+
   const [tab, setTab] = useState("Gasolina");
   let names = ["Gasolina", "Transacciones", "Apoyos"];
 
