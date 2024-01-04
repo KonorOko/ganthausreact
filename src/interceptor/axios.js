@@ -23,7 +23,7 @@ axios.interceptors.response.use(resp => resp, async error => {
                 localStorage.setItem("refresh_token", data.data.refresh);
                 localStorage.setItem("username", data.data.username)
                 localStorage.setItem("role", data.data.groups[0])
-                axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
+                axios.defaults.headers.common["Authorization"] = `Bearer ${data.data["access"]}`;
                 console.log("Refresh exitoso")
                 return data
             }}).catch((err) => {
