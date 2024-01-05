@@ -5,6 +5,7 @@ import {
   getAnalisis,
   getTransacciones,
   getApoyos,
+  getComisiones
 } from "../../../api/admin.api";
 import { ChartLine } from "../../../components/ChartLine";
 import { ChartBar } from "../../../components/ChartBar";
@@ -40,6 +41,16 @@ export function Analisis() {
       setTransacciones(resTransacciones.data);
     }
     loadTransaccion();
+  }, []);
+
+  const [comisiones, setComisiones] = useState([]);
+  useEffect(() => {
+    async function loadComisiones() {
+      const resComisiones = await getComisiones();
+      setComisiones(resComisiones.data);
+      console.log(resComisiones.data);
+    }
+    loadComisiones();
   }, []);
 
   const [apoyos, setApoyos] = useState([]);
@@ -88,7 +99,7 @@ export function Analisis() {
   }, [datos]);
 
   const [tab, setTab] = useState("Gasolina");
-  let names = ["Gasolina", "Transacciones", "Apoyos"];
+  let names = ["Gasolina", "Transacciones","Comisiones", "Apoyos"];
 
   function gasolinaTab() {
     return (
@@ -122,6 +133,20 @@ export function Analisis() {
     );
   }
 
+  function comisionesTab() {
+    return (
+      <div>
+        <h2 className="text-lg text-center font-bold">Comisiones</h2>
+        <p className="md:m-4 text-justify">
+          Los cálculos y análisis serán realizados con base en los registros del
+          mes actual.
+        </p>
+        <br />
+        <ChartBar data={comisiones} height={400} />
+      </div>
+    );
+  }
+
   function apoyosTab() {
     return (
       <div>
@@ -142,6 +167,8 @@ export function Analisis() {
         return gasolinaTab();
       case "Transacciones":
         return transaccionesTab();
+      case "Comisiones":
+        return comisionesTab();
       case "Apoyos":
         return apoyosTab();
       default:
@@ -166,7 +193,7 @@ export function Analisis() {
             <ChartLine data={balanceTotal} height={300} />
           </div>
         </div>
-        <div className="md:w-3/4 border rounded-md md:mx-auto mb-3 shadow-md bg-white py-3">
+        <div className="border rounded-md md:mx-auto mb-3 shadow-md bg-white py-3">
           <h2 className="text-center font-bold text-lg pt-3">
             Egresos del mes
           </h2>

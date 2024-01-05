@@ -104,8 +104,14 @@ export const getGasolina = () => api.get(`${server}/cajachica/api/v1/movimientos
 
 export const getTransacciones = () => api.get(`${server}/cajachica/api/v1/movimientos_transacciones/`);
 
+export const getComisiones = () => api.get(`${server}/cajachica/api/v1/movimientos_comisiones/`);
+
 export const getApoyos = () => api.get(`${server}/cajachica/api/v1/movimientos_apoyos/`);
 
 export const getAnalisis = () => api.get(`${server}/cajachica/api/v1/analitics_data/`);
 
 export const getFirstVerificaciones = () => api.get(`${server}/vehiculos/api/v1/first_verificaciones/`);
+
+export const getFirstTenencias = () => api.get(`${server}/vehiculos/api/v1/first_tenencias/`);
+
+export const getFirstServicios = () => api.get(`${server}/vehiculos/api/v1/first_servicios/`);
