@@ -28,7 +28,7 @@ export function MainPage() {
   useEffect(() => {
     async function loadMovimientos() {
       const res = await getUltimosMovimientos();
-      setUltimosMovimientos(res.data.reverse());
+      setUltimosMovimientos(res.data);
     }
     loadMovimientos();
   }, []);
