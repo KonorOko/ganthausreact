@@ -203,7 +203,7 @@ export function Analisis() {
               name="Gasolina"
               className={"md:w-36"}
             />
-            <ToolTip message="Depositos y transferencias">
+            <ToolTip message="Depositos y transferencias" className={"mt-2"}>
               <Metrics
                 valor={`$ ${datos[1]["cantidad_total"]}`}
                 name="Transacciones"
