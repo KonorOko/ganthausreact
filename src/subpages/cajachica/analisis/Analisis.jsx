@@ -12,7 +12,7 @@ import { ChartPie } from "../../../components/ChartPie";
 import { Tabs } from "../../../components/ui/Tabs";
 import { Metrics } from "../../../components/ui/Metrics";
 import { Navigation } from "../../../components/Navigation";
-import ToolTip from '../../../components/ui/ToolTip';
+import ToolTip from "../../../components/ui/ToolTip";
 
 export function Analisis() {
   const [balanceTotal, setBalanceTotal] = useState([[]]);
@@ -52,39 +52,39 @@ export function Analisis() {
   }, []);
 
   const [datos, setDatos] = useState([
-    { motivo: "gasolina", cantidad_total: '0.00' },
-    { motivo: "apoyos", cantidad_total: '0.00' },
-    { motivo: "comisiones", cantidad_total: '0.00' },
-    { motivo: "transaccion", cantidad_total: '0.00' },
-    { motivo: "otros", cantidad_total: '0.00' },
+    { motivo: "gasolina", cantidad_total: "0.00" },
+    { motivo: "apoyos", cantidad_total: "0.00" },
+    { motivo: "comisiones", cantidad_total: "0.00" },
+    { motivo: "transaccion", cantidad_total: "0.00" },
+    { motivo: "otros", cantidad_total: "0.00" },
   ]);
 
   const [datosFloat, setDatosFloat] = useState([
-    { motivo: "gasolina", cantidad_total: 0.00 },
-    { motivo: "apoyos", cantidad_total: 0.00 },
-    { motivo: "comisiones", cantidad_total: 0.00 },
-    { motivo: "transaccion", cantidad_total: 0.00 },
-    { motivo: "otros", cantidad_total: 0.00 },
+    { motivo: "gasolina", cantidad_total: 0.0 },
+    { motivo: "apoyos", cantidad_total: 0.0 },
+    { motivo: "comisiones", cantidad_total: 0.0 },
+    { motivo: "transaccion", cantidad_total: 0.0 },
+    { motivo: "otros", cantidad_total: 0.0 },
   ]);
 
   useEffect(() => {
     async function loadDatos() {
       const resDatos = await getAnalisis();
       setDatos(resDatos.data);
-
     }
     loadDatos();
   }, []);
 
   useEffect(() => {
     function dataChartPie() {
-      setDatosFloat(datos.map(dato => ({
-        ...dato,
-        cantidad_total: parseFloat(dato.cantidad_total.replace(/,/g, ''))
-      }))
-      )
+      setDatosFloat(
+        datos.map((dato) => ({
+          ...dato,
+          cantidad_total: parseFloat(dato.cantidad_total.replace(/,/g, "")),
+        }))
+      );
     }
-    dataChartPie()
+    dataChartPie();
   }, [datos]);
 
   const [tab, setTab] = useState("Gasolina");
@@ -174,16 +174,30 @@ export function Analisis() {
             <Metrics
               valor={`$ ${datos[0]["cantidad_total"]}`}
               name="Gasolina"
+              className={"w-36"}
             />
             <ToolTip message="Depositos y transferencias">
-            <Metrics
-              valor={`$ ${datos[1]["cantidad_total"]}`}
-              name="Transacción"
-            />
+              <Metrics
+                valor={`$ ${datos[1]["cantidad_total"]}`}
+                name="Transacciones"
+                className={"w-36"}
+              />
             </ToolTip>
-            <Metrics valor={`$ ${datos[3]["cantidad_total"]}`} name="Comisiones" />
-            <Metrics valor={`$ ${datos[2]["cantidad_total"]}`} name="Apoyos" />
-            <Metrics valor={`$ ${datos[4]["cantidad_total"]}`} name="Otros" />
+            <Metrics
+              valor={`$ ${datos[3]["cantidad_total"]}`}
+              name="Comisiones"
+              className={"w-36"}
+            />
+            <Metrics
+              valor={`$ ${datos[2]["cantidad_total"]}`}
+              name="Apoyos"
+              className={"w-36"}
+            />
+            <Metrics
+              valor={`$ ${datos[4]["cantidad_total"]}`}
+              name="Otros"
+              className={"w-36"}
+            />
           </div>
           <div className="border-t">
             <ChartPie
