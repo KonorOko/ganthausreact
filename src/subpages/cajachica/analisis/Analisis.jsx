@@ -201,29 +201,29 @@ export function Analisis() {
             <Metrics
               valor={`$ ${datos[0]["cantidad_total"]}`}
               name="Gasolina"
-              className={"w-36"}
+              className={"md:w-36"}
             />
             <ToolTip message="Depositos y transferencias">
               <Metrics
                 valor={`$ ${datos[1]["cantidad_total"]}`}
                 name="Transacciones"
-                className={"w-36"}
+                className={"md:w-36"}
               />
             </ToolTip>
             <Metrics
               valor={`$ ${datos[3]["cantidad_total"]}`}
               name="Comisiones"
-              className={"w-36"}
+              className={"md:w-36"}
             />
             <Metrics
               valor={`$ ${datos[2]["cantidad_total"]}`}
               name="Apoyos"
-              className={"w-36"}
+              className={"md:w-36"}
             />
             <Metrics
               valor={`$ ${datos[4]["cantidad_total"]}`}
               name="Otros"
-              className={"w-36"}
+              className={"md:w-36"}
             />
           </div>
           <div className="border-t">

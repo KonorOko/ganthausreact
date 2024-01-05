@@ -10,6 +10,7 @@ import {
 import { SimpleTable } from "../components/SimpleTable";
 import { Tabs } from "../components/ui/Tabs";
 import { Navigation } from "../components/Navigation";
+import ToolTip from '../components/ui/ToolTip';
 
 export function MainPage() {
   /*
@@ -131,12 +132,16 @@ export function MainPage() {
   function vehiculosTab() {
     return (
       <div className="py-2">
-        <h2 className="text-center font-bold text-2xl mt-1 mb-4">Vehículos</h2>
+        <h2 className="text-center font-bold text-2xl mt-1 mb-2">Vehículos</h2>
         <div>
-              <div className="md:flex">
-                <Metrics name="Mayor gasto" valor="..." className="w-52 py-4 mx-auto" />
-                <Metrics name="Menor gasto" valor="..." className="w-52 py-4 mx-auto" />
-              </div>
+          <div className="flex flex-row justify-evenly">
+            <ToolTip message="Gasolina mensual" className={"px-6"}>
+              <Metrics name="Mayor gasto" valor="..." />
+            </ToolTip>
+            <ToolTip message="Gasolina mensual" className={"px-6"}  >
+              <Metrics name="Menor gasto" valor="..." />
+            </ToolTip>
+          </div>
           <div className="md:flex md:mt-3 md:mx-3">
             <div className="text-center font-medium pb-0 mb-0 mt-2">
               Verificaciones próximas
