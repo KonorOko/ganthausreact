@@ -10,14 +10,16 @@ export function Sidebar({ children, username = "none", role = "none" }) {
   return (
     <aside className="fixed md:top-0 left-0 z-40 transition-transform translate-x-0 md:h-full bottom-0 w-full md:w-auto">
       <nav
-        className={`md:h-full justify-between md:flex md:flex-col bg-white border-r shadow-md transition-all h-16 ${expanded ? "md:w-64" : "md:w-18"
-          }`}
+        className={`md:h-full justify-between md:flex md:flex-col bg-white border-r shadow-md transition-all h-16 ${
+          expanded ? "md:w-64" : "md:w-18"
+        }`}
       >
         <div className="p-4 pb-10 mt-3 md:flex justify-between items-center hidden md:visible">
           <img
             src={Logo}
-            className={`overflow-hidden transition-all ${expanded ? "md:w-40" : "md:w-0"
-              }`}
+            className={`overflow-hidden transition-all ${
+              expanded ? "md:w-40" : "md:w-0"
+            }`}
             alt=""
           />
           <button
@@ -29,7 +31,11 @@ export function Sidebar({ children, username = "none", role = "none" }) {
         </div>
 
         <SidebarContext.Provider value={{ expanded }}>
-          <ul className={`md:flex-1 px-3 md:flex md:flex-col grid ${ role==="Admin" ? "grid-cols-7" : "grid-cols-6" }`}>
+          <ul
+            className={`md:flex-1 px-3 md:flex md:flex-col grid ${
+              role === "Admin" ? "grid-cols-7" : "grid-cols-6"
+            }`}
+          >
             {children}
           </ul>
         </SidebarContext.Provider>
@@ -68,15 +74,17 @@ export function SidebarItem({ icon, text, alert, link }) {
     >
       {icon}
       <span
-        className={`md:overflow-hidden md:transition-all hidden md:flex ${expanded ? "w-52 ml-3" : "w-0"
-          }`}
+        className={`md:overflow-hidden md:transition-all hidden md:flex ${
+          expanded ? "w-52 ml-3" : "w-0"
+        }`}
       >
         {text}
       </span>
       {alert && (
         <div
-          className={`absolute right-2 w-2 h-2 rounded bg-blue-400 ${expanded ? "" : "top-2"
-            }`}
+          className={`absolute right-2 w-2 h-2 rounded bg-blue-400 ${
+            expanded ? "" : "top-2"
+          }`}
         />
       )}
       {!expanded && (
