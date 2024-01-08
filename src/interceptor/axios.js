@@ -12,7 +12,7 @@ const timeout = new Promise((resolve, reject) => {
   const id = setTimeout(() => {
       clearTimeout(id);
       reject('Request timed out');
-  }, 10000); // 10 seconds
+  }, 20000); // 10 seconds
 });
 
 const processQueue = (error, token = null) => {
