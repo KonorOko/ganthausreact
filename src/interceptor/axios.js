@@ -8,13 +8,6 @@ const api = axios.create({
 let isRefreshing = false;
 let failedQueue = [];
 
-const timeout = new Promise((resolve, reject) => {
-  const id = setTimeout(() => {
-      clearTimeout(id);
-      reject('Request timed out');
-  }, 20000); // 10 seconds
-});
-
 const processQueue = (error, token = null) => {
     failedQueue.forEach(prom => {
       if (error) {
@@ -65,10 +58,9 @@ api.interceptors.response.use(
 
             originalRequest._retry = true;
             isRefreshing = true;
-            console.log("Refreshing token")
+
             const refreshToken = localStorage.getItem('refresh_token');
-            const refresh = api.post(`${server}/token/refresh/`, { refresh: refreshToken });
-            return Promise.race([refresh, timeout])
+            return api.post(`${server}/token/refresh/`, { refresh: refreshToken })
               .then(({data}) => {
                 localStorage.setItem('access_token', data.access);
                 localStorage.setItem('refresh_token', data.refresh);
@@ -78,15 +70,15 @@ api.interceptors.response.use(
                 return axios(originalRequest);
               })
               .catch(err => {
-                console.log("Refresh token error");
                 processQueue(err, null);
+                console.log("Refresh token error");
+                window.location.href = "/login";
                 return Promise.reject(err);
               })
-              .finally(() => { isRefreshing = false, console.log("Refreshing token finished") });
+              .finally(() => { isRefreshing = false });
           }
       
           console.log("Interceptor error");
-          window.location.href = "/login";
           return Promise.reject(error);
         }
       );
