@@ -80,7 +80,6 @@ api.interceptors.response.use(
               .catch(err => {
                 console.log("Refresh token error");
                 processQueue(err, null);
-                window.location.href = "/login";
                 return Promise.reject(err);
               })
               .finally(() => { isRefreshing = false, console.log("Refreshing token finished") });
